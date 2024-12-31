@@ -29,9 +29,9 @@ AddType image/webp .webp
 # sites/default/default.settings.php and
 # Drupal\Core\DrupalKernel::bootEnvironment() for settings that can be
 # changed at runtime.
-<IfModule mod_php.c>
-  php_value assert.active                   0
-</IfModule>
+#<IfModule mod_php.c>
+#  php_value assert.active                   0
+#</IfModule>
 
 # Requires mod_expires to be enabled.
 <IfModule mod_expires.c>
