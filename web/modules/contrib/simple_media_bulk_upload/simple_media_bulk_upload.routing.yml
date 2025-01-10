@@ -1,0 +1,15 @@
+simple_media_bulk_upload.bulk_upload:
+  path: '/admin/content/media/bulk-upload'
+  defaults:
+    _form: '\Drupal\simple_media_bulk_upload\Form\BulkUploadForm'
+    _title_callback: '\Drupal\simple_media_bulk_upload\Form\BulkUploadForm::getRouteTitle'
+  requirements:
+    _permission: 'dropzone upload files'
+
+simple_media_bulk_upload.config_form:
+  path: '/admin/config/media/simple-media-bulk-upload'
+  defaults:
+    _form: '\Drupal\simple_media_bulk_upload\Form\BulkUploadConfigForm'
+    _title: 'Simple Media Bulk Upload Configuration'
+  requirements:
+    _permission: 'administer simple media bulk upload'

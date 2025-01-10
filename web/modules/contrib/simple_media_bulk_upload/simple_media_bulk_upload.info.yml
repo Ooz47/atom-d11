@@ -1,0 +1,12 @@
+name: 'Simple Media Bulk Upload'
+core_version_requirement: ^10.2 || ^11
+type: module
+description: 'Provides a form to upload many media items at once.'
+package: Media
+dependencies:
+  - dropzonejs:dropzonejs
+
+# Information added by Drupal.org packaging script on 2024-09-26
+version: '2.0.0'
+project: 'simple_media_bulk_upload'
+datestamp: 1727354012

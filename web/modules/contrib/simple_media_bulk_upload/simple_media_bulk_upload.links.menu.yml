@@ -1,0 +1,5 @@
+simple_media_bulk_upload.settings:
+  title: 'Simple Media Bulk Upload'
+  parent: system.admin_config_media
+  description: 'Configure the Simple Media Bulk Upload module.'
+  route_name: simple_media_bulk_upload.config_form

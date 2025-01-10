@@ -1,0 +1,26 @@
+name: atomeco
+type: theme
+base theme: stable9
+description: thème spécifique ATOM
+package: Custom
+core_version_requirement: ^10 || ^11
+version: 1.0.0
+libraries:
+  - atomeco/global
+  - core/normalize
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  featured: 'Featured'
+  intro: 'Intro'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  contenusasso: 'Contenus associés'
+  section_3: 'Section 3'
+  footer: 'Footer'
+  footer2: 'Footer 2'

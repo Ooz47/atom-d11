@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Module file for Simple Media Bulk Upload.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\media\MediaForm;
+use Drupal\simple_media_bulk_upload\BulkUploadFormHelper;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function simple_media_bulk_upload_form_alter(&$form, FormStateInterface $formState) {
+  if ($formState->getFormObject() instanceof MediaForm) {
+    $form['actions']['submit']['#submit'][] = [
+      BulkUploadFormHelper::class,
+      'processSubmissionRedirectForBulkUpload',
+    ];
+  }
+}
