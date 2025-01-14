@@ -1,0 +1,101 @@
+@import "../utilities";
+/*Onglets admin*/
+#block-atomeco-primary-local-tasks ul:not(.contextual-links) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display:flex;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+
+    li a {
+        display: flex        ;
+            flex-grow: 1;
+            align-items: center;
+            height: 1rem;
+            padding-block: 0;
+            padding: 1rem;
+            transition: background-color .5s;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: var(--tabs-text-color);
+            border: 1px solid $grismenu;
+            background-color: $grisclair;
+            // font-size: var(--tabs-font-size);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        
+            &.is-active {
+                font-weight: bold;
+                &::after {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 4px;
+                    background-color: $bleucyan;
+                    position: absolute;
+    bottom: 0;
+                }
+            }
+    }
+}
+
+
+#section_2,#contenusasso{
+    background:$grisclair;
+        border-bottom: 1px solid #eee;
+        border-top: 1px solid #eee;
+    }
+
+    .titre_page {
+        background: $bleufonce top center;
+            border-bottom: 1px solid #eee;
+        padding: 0px 0;
+        #titre{
+        padding:17px;
+        }
+        h1{
+    color:$blanc;
+    }
+    
+    }
+
+
+    
+h1, h2, h3, h4, h5, h6 {
+    color: $noirpolice;
+    font-family: "NovecentowideLightBold", arial, serif;
+    font-weight: normal;
+	 /*font-family: Novecentosanswide-Normal;*/
+    font-weight: 500;
+}
+h1{
+font-size:1.7em;
+}
+h3 {
+color: $bleufonce;
+}
+h2.block-title, h3.block-title{
+    font-size: 17px;
+    line-height: 22x;
+    margin: 0 0 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    position: relative;
+    letter-spacing: 2px;
+	
+	&:after {
+    display: block;
+    content: "";
+    width: 80px;
+    height: 3px;
+    background-color: $grisbar;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -40px;
+}
+	
+	}

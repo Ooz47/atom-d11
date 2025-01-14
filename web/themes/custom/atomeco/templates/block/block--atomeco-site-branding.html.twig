@@ -1,0 +1,40 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+{% block content %}
+	{{ site_slogan }}
+
+	{# dpm('variable'); #}
+	{% if site_logo %}
+		{% if is_front %}
+
+			<a href="{{ path('<front>') }}" rel="home">
+				<img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high"/>
+			</a>
+		{% else %}
+			{% set replace_value_var = 'logo' %}
+			{% set replace_with_value_var = 'logo2' %}
+
+			{# {{ site_logo|replace({ (replace_value_var): replace_with_value_var }) }} #}
+		<a href="{{ path('<front>') }}" rel="home">
+				<img src="{{ site_logo|replace({ (replace_value_var): replace_with_value_var })  }}" alt="{{ 'Home'|t }}" fetchpriority="high"/>
+			</a>
+		{% endif %}
+	{% endif %}
+	{# {% if site_name %}
+		<a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
+	{% endif %} #}
+	{# {{ site_slogan }} #}
+{% endblock %}

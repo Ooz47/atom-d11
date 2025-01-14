@@ -4,12 +4,12 @@ global:
     js/atomeco.js: {}
   css:
     base:
-      css/base/elements.css: {}
+      css/base/base.css: {}
       css/atomeco.css: {}
     component:
       css/component/block.css: {}
-      css/component/breadcrumb.css: {}
-      css/component/field.css: {}
+      css/component/intro.css: {}
+      css/component/footer.css: {}
       css/component/form.css: {}
       css/component/header.css: {}
       css/component/menu.css: {}

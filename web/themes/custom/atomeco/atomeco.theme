@@ -27,3 +27,27 @@ function atomeco_preprocess_page(array &$variables): void {
 function atomeco_preprocess_node(array &$variables): void {
 
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ *
+ * Cette fonction est utilisée pour prétraiter les variables avant qu'elles ne soient
+ * passées au template de bloc `atomeco_site_branding`. Elle ajoute une variable
+ * `is_front` qui indique si la page actuelle est la page d'accueil.
+ *
+ * @param array &$variables
+ *   Un tableau de variables à passer au template.
+ */
+function atomeco_preprocess_block__atomeco_site_branding(&$variables) {
+    // // Débogage : affiche "lala" dans le message de débogage.
+    // dsm("lala");
+    
+    try {
+        // Vérifie si la page actuelle est la page d'accueil.
+        $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+    }
+    catch (Exception $e) {
+        // En cas d'exception, définit 'is_front' à FALSE.
+        $variables['is_front'] = FALSE;
+    }
+}
