@@ -74,16 +74,18 @@
 {% if is_front %}
 
 	{% else %}
+
+		{% if page.titre %}
+			<div id="titre_page">
+				{{ page.titre }}
+			</div>
+		{% endif %}
 	<main role="main">
 
 
 		<a id="main-content" tabindex="-1"></a>
 		{# link is in html.html.twig #}
-	{% if page.titre %}
-			<h1 id="titre_page">
-				{{ page.titre }}
-			</h1>
-		{% endif %}
+
 
 		<div class="layout-content">
 			{{ page.content }}

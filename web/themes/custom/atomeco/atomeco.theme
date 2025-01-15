@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Drupal\node\NodeInterface;
+
 /**
  * @file
  * Functions to support theming in the atomeco theme.
@@ -11,6 +13,61 @@ declare(strict_types=1);
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
 function atomeco_preprocess_html(array &$variables): void {
+
+      $view_mode = $variables;
+      // dsm($view_mode);
+      $node = \Drupal::routeMatch()->getParameter('node');
+      if ($node instanceof NodeInterface) {
+        $variables['attributes']['class'][] = 'page-node-' . $node->getType();
+        $variables['attributes']['class'][] = 'page-node-' . $node->id();
+    
+        // if ($node->hasField('field_structure_associee') && !$node->get('field_structure_associee')->isEmpty()) {
+        //   $terms = $node->get('field_structure_associee')->getValue();
+        //   $variables['attributes']['class'][] = 'page-node-structure' . $terms[0]['target_id'];
+        // }
+       
+        //   $variables['attributes']['class'][] = 'page-node-verticale';
+        
+    
+      } else {
+        $variables['attributes']['class'][] = 'page-no-node';
+      }
+    
+      $view = \Drupal::routeMatch()->getParameter('view_id');
+    
+      if ($view) {
+        $current_path = \Drupal::service('path.current')->getPath();
+        $internal_path = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+    
+        // Assign it to body class 
+        $variables['attributes']['class'][] = str_replace("/", "", $internal_path);
+      }
+    
+      // Prefetch Google fonts
+      $variables['#attached']['html_head'][] = [
+        [
+          '#tag' => 'link',
+          '#attributes' => [
+            'rel' => 'dns-prefetch',
+            'href' => 'https//fonts.googleapis.com'
+          ]
+        ],
+        "prefetch_fonts_googleapis"
+      ];
+      // Preconnect Google fonts
+      $variables['#attached']['html_head'][] = [
+        [
+          '#tag' => 'link',
+          '#attributes' => [
+            'rel' => 'preconnect',
+            'href' => 'https://fonts.gstatic.com/',
+            'crossorigin' => 'anonymous',
+          ]
+        ],
+        "preconnect_fonts_gstatic"
+      ];
+    
+
 
 }
 

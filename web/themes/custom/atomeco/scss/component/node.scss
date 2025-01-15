@@ -1,0 +1,228 @@
+@import "../utilities";
+
+body.page-node-page {
+    #titre_page {
+        display: none;
+    }
+}
+
+#titre_page {
+    background: #214593 top center;
+    border-bottom: 1px solid #eee;
+    padding: 0px 0;
+    h1 {
+        padding: 17px;
+
+        color: white;
+    }
+}
+
+body.page-node-page #block-atomeco-content {
+    margin: 20px auto;
+    max-width: 756px;
+    padding: 0px 20px;
+    article {
+        h2 {
+            font-size: 17px;
+            line-height: 22x;
+            margin: 0 0 20px;
+            padding-bottom: 20px;
+            text-align: center;
+            position: relative;
+            letter-spacing: 2px;
+
+            &:after {
+                display: block;
+                content: "";
+                width: 80px;
+                height: 3px;
+                background-color: $grisbar;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                margin-left: -40px;
+            }
+        }
+    }
+}
+
+body.page-node-note,
+body.page-node-actualite
+ {
+    main {
+        article {
+            .field-thematiques,
+            .field-date,
+            .field-contributeurs,
+            .field-categorie-actualite {
+                font-size: 12px;
+                display: inline-block;
+                margin-right: 8px;
+                padding: 0 10px 0 5px;
+                border-right: 1px solid #ddd;
+                line-height: 12px;
+                color: $grispolice;
+
+                a {
+                    color: $grispolice;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                &::before {
+                    display: inline-block;
+                    line-height: 45px;
+                    margin-left: -5px;
+                    margin-right: 5px;
+                    padding-top: 5px;
+                    border-right: 1px #fff solid;
+                    font: normal normal normal 12px / 1 FontAwesomeRegular;
+                    text-rendering: auto;
+                    -webkit-font-smoothing: antialiased;
+                    content: "\f017";
+                }
+            }
+            .blazy--field-image {
+                float: right;
+                padding: 0 0 0 15px;
+                img {
+                    padding: 3px;
+                    border: 1px #eeeff1 solid;
+                    border-radius: 3px;
+                }
+            }
+            .field-fichier-pdf {
+                font-family: NovecentowideLightBold;
+                @include border-radius(10px);
+                //    color: #444;
+                background: $grisclair;
+                text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+                text-decoration: none;
+                font-size: 14px;
+               line-height: 30px;
+                font-weight: 400;
+
+                cursor: pointer;
+                padding: 12px 12px;
+                 @include transition(background, 0.3s, ease-out);	
+                margin: 25px auto;
+                    text-align: center;
+                    max-width: 315px;
+                a{
+                    text-decoration: none;
+                        font-size: 13px;
+                        color:$bleufonce;
+                          line-height: 14px;
+                }
+                &:hover{
+                background: #214593;
+                 @include transition(background, 0.3s, ease-out);	
+                 color:$blanc;
+                 a{
+                 color:$blanc;
+                 
+                 }
+                }
+                &:before{
+                content: "Télécharger la note:";
+                }
+                
+                .media-fichier-pdf{
+                    line-height: 18px;
+                    .file-icon{
+                    display:none;
+                    }
+                    span.file--mime-application-pdf + span {
+                        display: none;
+                    }
+                    a{
+                    &:after{
+                        display: block;
+            
+                padding-top: 5px;
+                font: normal normal normal 24px/1 FontAwesome;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                content: "\f019";
+                    
+                    }
+                    }
+                }
+            }
+        }
+    }
+}
+
+body:not(.page-node-note) main article .field-fichier-pdf {
+    max-width: 50%;
+    &:hover{
+        background: inherit;
+         @include transition(background, 0.3s, ease-out);	
+         color:#214593;
+         a{
+         color:#214593;
+         
+         }
+        }
+
+    .media-fichier-pdf{
+        margin: 5px 0;
+        &:hover {
+            background: #214593;
+            @include transition(background, 0.3s, ease-out);
+    // -webkit-transition: background 0.3s ease-out;
+    // -moz-transition: background 0.3s ease-out;
+    // -o-transition: background 0.3s ease-out;
+    // transition: background 0.3s ease-out;
+    color: white!important;
+        }
+        a {
+            display: flex
+            ;
+                align-items: center;
+                justify-content: space-between;
+                padding: 7px;
+                text-align: left;
+        }
+    }}
+        
+body.page-node-note,
+body.page-node-actualite {
+    main {
+        article {
+            .field-thematiques {
+                &::before {
+                    content: "\f292";
+                    font: normal normal normal 12px / 1 FontAwesome;
+                }
+                border-right: 0px solid #ddd;
+            }
+            .field-contributeurs {
+                &::before {
+                    content: "\f044";
+                }
+            }
+            .field-categorie-actualite {
+                &::before {
+                    content: "\f02b";
+                }
+            }
+            .field-contributeurs,
+            .field-thematiques {
+                & > div {
+                    display: inline-block;
+                    &:after {
+                        content: ",\00a0";
+                    }
+                    &:last-child {
+                        &:after {
+                            content: "";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

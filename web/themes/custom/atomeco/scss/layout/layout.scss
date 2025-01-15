@@ -3,7 +3,15 @@
     border-top: 22px solid $bleufonce;
 }
 
-#page, #entete, .intro, #section_3, #titre, #contenusassos, .region-bottom, #block-atomeco-views-block-contenus-block-5, #block-atomeco-views-block-contenus-block-4{
+main, 
+#entete, 
+.intro, 
+#section_3, 
+.titre, 
+#contenusassos, 
+.region-bottom, 
+#block-atomeco-views-block-contenus-block-5, 
+#block-atomeco-views-block-contenus-block-4{
     margin-left: auto;
     margin-right: auto;
     max-width: 1100px;
@@ -12,4 +20,8 @@
 
 .section_2, .section_3 {
     padding-top: 1em;
+}
+
+.text-center {
+    text-align: center;
 }
