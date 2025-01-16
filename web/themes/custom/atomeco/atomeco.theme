@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Drupal\node\NodeInterface;
+use Kint\Kint;
 
 /**
  * @file
@@ -14,8 +15,8 @@ use Drupal\node\NodeInterface;
  */
 function atomeco_preprocess_html(array &$variables): void {
 
-      $view_mode = $variables;
-      // dsm($view_mode);
+      // $view_mode = $variables;
+      // Kint($view_mode);
       $node = \Drupal::routeMatch()->getParameter('node');
       if ($node instanceof NodeInterface) {
         $variables['attributes']['class'][] = 'page-node-' . $node->getType();
@@ -33,6 +34,10 @@ function atomeco_preprocess_html(array &$variables): void {
         $variables['attributes']['class'][] = 'page-no-node';
       }
     
+      if ($variables['root_path'] == 'user') {
+        $variables['attributes']['class'][] = 'page-user';
+      }
+
       $view = \Drupal::routeMatch()->getParameter('view_id');
     
       if ($view) {

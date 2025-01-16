@@ -17,8 +17,7 @@ global:
       css/component/node.css: {}
       css/component/sidebar.css: {}
       css/component/table.css: {}
-      css/component/tabs.css: {}
-      css/component/buttons.css: {}
+      css/component/contenus_associes.css: {}
     layout:
       css/layout/layout.css: {}
     theme:

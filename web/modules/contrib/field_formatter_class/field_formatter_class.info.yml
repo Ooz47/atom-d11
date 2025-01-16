@@ -1,0 +1,12 @@
+name: Field Formatter Class
+type: module
+description: "Provides custom HTML class settings for field formatters."
+core_version_requirement: ^10.2 || ^11.0
+package: Field Formatters
+dependencies:
+ - drupal:field
+
+# Information added by Drupal.org packaging script on 2024-08-28
+version: '8.x-1.8'
+project: 'field_formatter_class'
+datestamp: 1724880270

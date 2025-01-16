@@ -55,7 +55,9 @@ main {
   border-top: 1px solid #eee;
 }
 #block-atomeco-views-block-contenus-block-5,
-#block-atomeco-views-block-contenus-block-4 {
+#block-atomeco-views-block-contenus-block-4,
+#block-atomeco-views-block-contenus-block-2,
+#block-atomeco-views-block-contenus-block-3 {
   h2 {
     font-size: 17px;
     line-height: 22x;
@@ -76,11 +78,12 @@ main {
       margin-left: -40px;
     }
   }
-  .slick .slick-slide {
+  .slick .slick-slide, .slick > .slide  {
     width: 332px;
     margin-bottom: 30px;
     margin-top: 30px;
-    display: inline;
+    // display: inline;
+    display: inline-block;
     margin-left: 17px;
     margin-right: 17px;
     @include border-radius(4px);
@@ -88,12 +91,12 @@ main {
     -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     background: #fff;
-
+    text-align: center;
     h3 {
       margin-top: 0;
       margin-bottom: 1em;
       font-size: 13px;
-      line-height: 22px;
+      // line-height: 22px;
       text-align: center;
       text-transform: UPPERCASE;
       letter-spacing: 0px;
@@ -111,21 +114,30 @@ main {
     .views-field-title {
       margin: 1em 10px;
     }
-    .views-field-field-thematiques {
+    .views-field-field-thematiques,
+    .views-field-field-membres-contributeurs {
       margin: 10px 26px 0;
       font-family: "Droid Serif", georgia, serif;
       font-style: italic;
       font-size: 12px;
       line-height: 12px;
       text-align: center;
-      margin: 0 26px 0;
+      // margin: 0 26px 0;
       clear: both;
       color: #888888;
-      padding: 0 20px 24px;
+      // padding: 0 20px 24px;
+      padding: 0 13px 0px;
       a {
-        color: #888888;
+        color: $grispolice;
         text-decoration: none;
+        &:hover {
+          text-decoration: underline;
       }
+      }
+    }
+    .views-field-field-thematiques {
+      margin: 10px 26px 0;
+      padding: 0 20px 24px;
     }
   }
   .slick {

@@ -75,8 +75,12 @@ h1, h2, h3, h4, h5, h6 {
 h1{
 font-size:1.7em;
 }
+h2{
+    font-size: 1em;
+    }
 h3 {
 color: $bleufonce;
+line-height: 1.5;
 }
 h2.block-title, h3.block-title{
     font-size: 17px;
@@ -100,3 +104,121 @@ h2.block-title, h3.block-title{
 }
 	
 	}
+
+
+
+    
+    .field-thematiques,
+    .field-date,
+    .field-contributeurs,
+    .field-categorie-actualite {
+        font-size: 12px;
+        display: inline-block;
+        margin-right: 8px;
+        padding: 0 10px 0 5px;
+        border-right: 1px solid #ddd;
+        line-height: 12px;
+        color: $grispolice;
+
+        a {
+            color: $grispolice;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &::before {
+            display: inline-block;
+            line-height: 45px;
+            margin-left: -5px;
+            margin-right: 5px;
+            padding-top: 5px;
+            border-right: 1px #fff solid;
+            font: normal normal normal 12px / 1 FontAwesomeRegular;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            content: "\f017";
+        }
+    }
+
+    .field-thematiques{
+        &::before {
+            content: "\f292";
+            font: normal normal normal 12px / 1 FontAwesome;
+        }
+        border-right: 0px solid #ddd;
+    }
+    .field-contributeurs {
+        &::before {
+            content: "\f044";
+        }
+    }
+    .field-categorie-actualite {
+        &::before {
+            content: "\f02b";
+        }
+    }
+    .field-contributeurs {
+        & > div {
+            display: inline-block;
+            &:after {
+                content: ",\00a0";
+            }
+            &:last-child {
+                &:after {
+                    content: "";
+                }
+            }
+        }
+    }
+
+
+    .views-field-field-thematiques,
+    .views-field-field-membres-contributeurs {
+        // display: inline-block;
+        // margin-right: 8px;
+        // padding: 0 10px 0 5px;
+        // border-right: 1px solid #ddd;
+
+        // color: $grispolice;
+
+        // a {
+        //     color: $grispolice;
+        //     text-decoration: none;
+     
+        // }
+        
+        &::before {
+            display: inline-block;
+            line-height: 45px;
+            margin-left: 0;
+            margin-right: 5px;
+            padding-top: 5px;
+            border-right: 1px $blanc solid;
+            font: normal normal normal 12px / 1 FontAwesome;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            content: "\f292";
+          }
+          a {
+            font-family: "Droid Serif", georgia, serif;
+            font-style: italic;
+            font-size: 12px;
+            line-height: 12px;
+            text-align: center;
+            margin: 0 26px 0;
+            clear: both;
+            color: $grisfonce;
+          }
+    
+    }
+
+    .views-field-field-membres-contributeurs {
+
+            &::before {
+                content: "\f044";
+            }
+        
+    }
+
