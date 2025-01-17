@@ -1,0 +1,4 @@
+extra.admin:
+  css:
+    theme:
+      css/admin.css: {}

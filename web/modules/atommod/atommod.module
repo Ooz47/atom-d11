@@ -1,0 +1,31 @@
+<?php
+
+
+ function atommod_page_attachments_alter(array &$attachments)
+ {
+   /**
+    * Retire meta generator
+    */
+   foreach ($attachments['#attached']['html_head'] as $key => $attachment) {
+     if ($attachment[1] == 'system_meta_generator') {
+       unset($attachments['#attached']['html_head'][$key]);
+     }
+   }
+ 
+   /*ajoute css admin*/
+   $admin_theme = \Drupal::config('system.theme')->get('admin');
+   $admin_theme_name = \Drupal::service('theme_handler')->getName($admin_theme);
+//    dsm($admin_theme_name);
+   if ($admin_theme_name == 'Claro') {
+     $attachments['#attached']['library'][] = 'atommod/extra.admin';
+   }
+ 
+   // /* charge library si role est webmaster reseau */
+//    $current_user = \Drupal::entityTypeManager()->getStorage('user')->load(\Drupal::currentUser()->id());
+//    if ($current_user->hasRole('webmaster_reseau')) {
+ 
+//      $attachments['#attached']['library'][] = 'reseau_mod/reseau_mod';
+//      // return;
+//    }
+ }
+ 

@@ -93,28 +93,30 @@
       }
 
       .champ-thematiques {
-        // &::before {
-        //   display: inline-block;
-        //   line-height: 45px;
-        //   margin-left: 0;
-        //   margin-right: 5px;
-        //   padding-top: 5px;
-        //   border-right: 1px $blanc solid;
-        //   font: normal normal normal 12px / 1 FontAwesome;
-        //   text-rendering: auto;
-        //   -webkit-font-smoothing: antialiased;
-        //   content: "\f292";
-        // }
-        // a {
-        //   font-family: "Droid Serif", georgia, serif;
-        //   font-style: italic;
-        //   font-size: 12px;
-        //   line-height: 12px;
-        //   text-align: center;
-        //   margin: 0 26px 0;
-        //   clear: both;
-        //   color: $grisfonce;
-        // }
+       
+          // margin: 10px 26px 0;
+          // font-family: "Droid Serif", georgia, serif;
+          // font-style: italic;
+          font-size: 12px;
+          line-height: 12px;
+          text-align: center;
+          // margin: 0 26px 0;
+          clear: both;
+          color: #888888;
+          margin: 0;
+          padding: 0 20px 10px;
+          & > div {
+            display: inline-block;
+            a {
+              color: $grispolice;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          
+        }
+  
       }
 
       // .views-field-title h3{
@@ -130,7 +132,7 @@
   .slick-dots {
     display: flex;
     justify-content: space-evenly;
-    width: 50%;
+    width: 25%;
     /* align-items: center; */
     margin: auto;
     li {
@@ -140,7 +142,7 @@
 
       &:after {
         padding-top: 5px;
-        font: normal normal normal 15px/1 FontAwesomeRegular;
+        font: normal normal normal 12px/1 FontAwesomeRegular;
         text-rendering: auto;
         color: #888888;
 
@@ -153,7 +155,7 @@
 
       &.slick-active {
         &:after {
-          font: normal normal normal 15px/1 FontAwesome;
+          font: normal normal normal 12px/1 FontAwesome;
           content: "\f111";
         }
       }

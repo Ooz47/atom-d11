@@ -1,6 +1,10 @@
 @import "../utilities";
 
-body.page-node-page {
+body.page-node-page,
+body.membres,
+body.les-notes,
+body.actualites
+ {
     #titre_page {
         display: none;
     }
@@ -187,10 +191,14 @@ body.page-user {
     }
 }
 
+/*Vue membres*/
 body.membres {
     .membres {
         display: flex;
         flex-wrap: wrap;
+        header {
+            flex-basis: 100%;
+        }
         .views-row {
             vertical-align: top;
             min-height: 350px;

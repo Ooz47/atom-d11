@@ -78,7 +78,8 @@ main {
       margin-left: -40px;
     }
   }
-  .slick .slick-slide, .slick > .slide  {
+  .slick .slick-slide,
+  .slick > .slide {
     width: 332px;
     margin-bottom: 30px;
     margin-top: 30px;
@@ -115,29 +116,51 @@ main {
       margin: 1em 10px;
     }
     .views-field-field-thematiques,
-    .views-field-field-membres-contributeurs {
-      margin: 10px 26px 0;
-      font-family: "Droid Serif", georgia, serif;
-      font-style: italic;
-      font-size: 12px;
-      line-height: 12px;
-      text-align: center;
-      // margin: 0 26px 0;
-      clear: both;
-      color: #888888;
-      // padding: 0 20px 24px;
-      padding: 0 13px 0px;
-      a {
-        color: $grispolice;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-      }
-      }
+    .views-field-field-membres-contributeurs     {
+      // margin: 10px 26px 0;
+      // // font-family: "Droid Serif", georgia, serif;
+      // // font-style: italic;
+      // font-size: 12px;
+      // line-height: 12px;
+      // text-align: center;
+      // // margin: 0 26px 0;
+      // clear: both;
+      // color: #888888;
+      // // padding: 0 20px 24px;
+      // padding: 0 13px 0px;
+      // & > div {
+      //   display: inline-block;
+      //   a {
+      //     color: $grispolice;
+      //     text-decoration: none;
+      //     &:hover {
+      //       text-decoration: underline;
+      //     }
+      //   }
+      // }
     }
     .views-field-field-thematiques {
-      margin: 10px 26px 0;
+      // margin: 10px 26px 0;
       padding: 0 20px 24px;
+    }
+    @include transition(background, 0.5s, ease-out);
+    &:hover {
+      // background: #f7fafc;
+      background: $grisclair;
+      /**/
+      -webkit-filter: saturate(1.3);
+      // transform: scale(1.02);
+      filter: saturate(1.3);
+     
+      //@include scala(1, 0.2s, ease-out);
+
+      .views-field-title,
+      .groupe1 h3 {
+        a {
+          color: $bleufonce;
+          @include transition(color, 0.3s, ease-out);
+        }
+      }
     }
   }
   .slick {
@@ -193,44 +216,7 @@ main {
   }
 
   /*Bloc actus accueil*/
-  .groupe1 {
-    display: flex;
-    column-gap: 1rem;
-    padding-top: 10px;
-    .date-actu {
-      // float: left;
-      text-align: center;
-      width: 38px;
-
-      .jour {
-        background: #f9f9f9;
-        padding: 6px 0px;
-        font-size: 15px;
-        color: #727272;
-        @include border-radius(2px 2px 0 0);
-        border-bottom: 1px solid white;
-      }
-      .mois {
-        background-color: $bleucyan;
-        @include linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.04));
-   
-        background-repeat: repeat-x;
-        padding: 0px 8px 0px 8px;
-        color: white;
-        font-size: 12px;
-        @include border-radius(0 0 2px 2px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      }
-    }
-    .contenu-actu {
-      color: #2f2f2f;
-      font-size: 13px;
-      text-align: justify;
-      word-break: break-word;
-      word-spacing: -2px;
-      line-height: 21px;
-    }
-  }
+ 
 }
 
 /**/
@@ -247,3 +233,245 @@ main {
     }
   }
 }
+
+
+/*Page vue NOTEs*/
+
+.pages-notes,
+.page-actualites
+ {
+  display: flex  ;
+      /* flex-direction: row; */
+      flex-wrap: wrap;
+      gap: 3rem;
+  .views-row {
+
+    min-height: 350px;
+    width: 45%;
+    width: 332px;
+    padding-bottom:20px;
+
+    // margin-top: 30px;
+@include border-radius(4px);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    // padding-bottom: 20px;
+
+
+
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1em;
+      font-size: 13px;
+      // line-height: 22px;
+      text-align: center;
+      text-transform: UPPERCASE;
+      letter-spacing: 0px;
+      // margin-top: 1em;
+      /*font-size: 16px;*/
+      // margin-bottom: 1em;
+      padding: 0;
+      a {
+        text-align: center;
+        text-decoration: none;
+        color: #2f2f2f;
+      }
+    }
+
+    .views-field-title {
+      margin: 1em 15px;
+    }
+    .views-field-field-date {
+      
+     
+    }
+    .views-field-field-date,
+    .views-field-field-membres-contributeurs,
+    .views-field-field-thematiques {
+      text-align: left;
+      // margin: 10px 0 0;
+      // padding: 0 10px 0px;
+    }
+
+    @include transition(background, 0.5s, ease-out);
+    &:hover {
+      // background: #f7fafc;
+      background: $grisclair;
+      /**/
+      -webkit-filter: saturate(1.3);
+      // transform: scale(1.02);
+      filter: saturate(1.3);
+     
+      //@include scala(1, 0.2s, ease-out);
+
+      .views-field-title,
+      .groupe1 h3 {
+        a {
+          color: $bleufonce;
+          @include transition(color, 0.3s, ease-out);
+        }
+      }
+    }
+    
+  .views-field-field-image img,
+  .champ-image-actu img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  }
+}
+
+/*EXPOSED BLOCS*/
+.page-actualites {
+.views-row {
+  .views-field-field-thematiques {
+    padding: 0;
+  }
+  }
+}
+
+body.les-notes,
+body.actualites
+ {
+  main .layout-content {
+
+    // .views-field-field-thematiques,
+    .type-actu {
+      text-align: left;
+      margin: 0;
+      padding: 0;
+      &::before {
+        display: inline-block;
+        line-height: 45px;
+        margin-left: 0;
+        margin-right: 5px;
+        padding-top: 5px;
+        border-right: 1px $blanc solid;
+        font: normal normal normal 12px / 1 FontAwesome;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        content: "\f02b";
+    }
+    }
+
+    flex-basis: 70%;
+}
+aside {
+  flex-basis: 30%;
+}
+}
+#block-atomeco-formulaireexposecontenuspage-1,#block-atomeco-formulaireexposecontenuspage-2{
+  // margin-top: 1.5em;
+      // float: right;
+      // width: 30%;
+    h2{  
+      color:$blanc;
+      text-transform: uppercase; 
+      font: 17px/44px 'Open Sans', arial, sans-serif;
+      width: 250px;
+      height: 45px;
+      background: #2184e1;
+      padding-bottom: 0;
+      letter-spacing:0;
+      margin-bottom:0;
+        &:after{
+          display:none;
+        }
+        &:before{
+          display: inline-block;
+  
+          line-height: 45px;
+        
+          margin-left: -12px;
+          margin-right: 12px;
+          padding: 12px;
+          border-right: 1px #fff solid;
+          font: normal normal normal 21px/1 FontAwesome;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          content: "\f002";
+        }
+    }/**/
+  
+    #views-exposed-form-contenus-page-1,#views-exposed-form-contenus-page-2{
+      background:$bleufonce;
+      padding: 5px;
+      
+        .form-item{
+          /*margin-left: 38px;
+              margin-bottom: 3px;
+      margin-top: -8px;*/
+        float: none;
+        padding: 0;
+      width: 218px;
+      margin: 0 auto 3px;
+            label{
+              font: 16px/32px 'Open Sans', arial, sans-serif;
+              color:$blanc;
+              text-transform: uppercase;
+              display: block;
+            }
+            &.views-submit-button{
+            width: 121px;
+            
+            input[type="submit"]{
+            margin-left:auto;
+            }
+            }
+        }
+  
+        .chosen-container, .form-type-textfield{
+          width:218px!important;
+          min-height: 27px;
+          font-size: 13px;
+            input{
+              border: 0px solid #aaa;
+              color: #999;
+            }
+        }
+        .form-type-textfield{
+          input{
+            padding: 6px 0;
+          }
+        }
+
+        .form-actions {
+          text-align: center;
+          margin: 0 auto 3px;
+      input[type="submit"] {
+      color:$blanc;
+      text-transform: uppercase; 
+      font: 17px/40px 'Open Sans', arial, sans-serif;
+          background: $bleucyan;
+            margin-top: 15px;
+      width: 121px;
+      height: 43px;
+    border: 1px solid #fff;
+        // margin-left: 2em;
+      
+      &:hover{
+    // @include linear-gradient(to bottom, $bleucyan, $bleufonce, $bleucyan);
+       background: #0a89ff;
+    
+     @include transition(background, 0.2s, ease-out);/**/
+    }
+      }	
+      }	
+    }
+    
+    #views-exposed-form-contenus-page-2{
+    .chosen-container, .form-type-textfield{
+          max-width:520px!important;
+          min-width:218px!important;
+        // width:auto!important;
+        }
+    
+    }
+
+
+
+  }

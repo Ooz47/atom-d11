@@ -5,6 +5,8 @@ description: thème spécifique ATOM
 package: Custom
 core_version_requirement: ^10 || ^11
 version: 1.0.0
+ckeditor5-stylesheets:
+  - css/cke5-style.css
 libraries:
   - atomeco/global
   - core/normalize
