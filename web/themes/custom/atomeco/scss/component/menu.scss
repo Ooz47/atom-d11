@@ -1,23 +1,27 @@
 @import "../utilities";
+$transition-duration: 0.3s;
+$transition-timing-function: ease-in-out;
 
 nav#block-atomeco-main-menu {
     font-family: 'Source Sans Pro', sans-serif;
     font-size:18px;
     text-transform: uppercase;
-        margin: 15px 0 60px 0;
+        margin: 15px 0 30px 0;
         text-align: center;
         width: 100%;
+        z-index: 5;
+        position: relative;
         //background: url(../images/navigation-bg.png) 0px 1px;
 
     ul {
-        display: flex;
-            list-style: none;
-            justify-content: space-evenly;
-            flex-wrap: nowrap;
+        list-style: none;
+        padding: 0;
+        margin: 0;
 
             li {
+                position: relative;
                 display: inline-block;
-                padding: 5px 0;
+                // padding: 5px 0;
                 // float:none;
                 margin: 0;
                 background: $grismenu;
@@ -29,7 +33,11 @@ nav#block-atomeco-main-menu {
                 text-decoration: none;
                 padding: 5px 55px;
                 color: $noirpolice;
-                
+                display: block;
+                // padding: 10px;
+                // text-decoration: none;
+                // color: #000;
+                @include transition(background, 0.2s, ease-in); /**/
                 }
                 @include transition(background, 0.2s, ease-in);/**/
                 &:hover{
@@ -40,6 +48,13 @@ nav#block-atomeco-main-menu {
             color: $blanc;
             }		
                 
+            }
+            a.is-active {
+                background: $bleufonce;
+                color: $blanc;
+                outline: 0;
+                -webkit-transition: none;
+                transition: none;
             }
             &.active-trail{
                background: $bleufonce;
@@ -55,11 +70,24 @@ nav#block-atomeco-main-menu {
             // &.menu-530{
             // display:none;
             // }
+            &:hover > ul {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+              }
             ul {
-                // border-top: 0px solid #ccc;
-                //     margin-right: 1px;
-                //         top: 2em;
-                //             width: 99%;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #fff;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity $transition-duration $transition-timing-function, visibility $transition-duration $transition-timing-function;
+             
             li{
                 display: inline-block;
                 //text-transform: capitalize;
@@ -82,6 +110,10 @@ nav#block-atomeco-main-menu {
              text-transform: uppercase;
             }
                 }
+                a.is-active {
+                    color: $blanc !important;
+                    background: $bleufonce;
+                }
                 &.active-trail{
                 a{color: $blanc!important;
                 &.active{
@@ -101,27 +133,54 @@ nav#block-atomeco-main-menu {
             }
     }
 }    
+// Styles pour le menu burger
+.menu-burger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+  
+    &:hover {
+      background: #333;
+    }
+  }
 
 
+  @media (max-width: 768px) {
+   nav#block-atomeco-main-menu ul {
+      display: none;
 
-ul.nice-menu {
-    li{
-    border:0;
-     
-    a{ display: initial;
+    &.menu-open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        li {
+          display: block;
+          width: 100%;
+      
+          ul {
+            position: static;
+            display: block;
+            visibility: visible;
+            opacity: 1;
+  
+            // li {
+            //   background: #fff;
+            // }
+          }
+        }
     }
-    }
-        }	
-    ul.nice-menu-down {
-        float: none;
-        &:focus{
-        outline:none;}
-    }
-        #main-menu {
+  
 
-        .nice-menu{
-       
-    
-    }
-        
-    }
+  
+  
+  
+  
+  }
+
+  .menu-burger {
+    display: block;
+  }
+  }

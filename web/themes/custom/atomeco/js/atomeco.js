@@ -7,10 +7,17 @@
   'use strict';
 
   Drupal.behaviors.atomeco = {
-    attach (context, settings) {
+    attach: function (context, settings) {
+      // Utilisez context pour cibler les éléments dans le DOM
+      const burger = once('menu-burger', '.menu-burger', context);
+      const menu = once('menu', 'nav#block-atomeco-main-menu > ul', context);
 
-      console.log('It works!');
-
+      if (burger.length && menu.length) {
+        burger[0].addEventListener('click', function() {
+          menu[0].classList.toggle('menu-open');
+          console.log('object');
+        });
+      }
     }
   };
 

@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\ViewExecutable;
 
  function atommod_page_attachments_alter(array &$attachments)
  {
@@ -29,3 +31,98 @@
 //    }
  }
  
+ /**
+   * Implements hook_form_FORM_ID_alter().
+   *
+   * Alters the artist options on artwork pages.
+   */
+  // function atommod_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+ 
+  //   // If not the view we are looking, move on
+  //   if ($form['#id'] == 'views-exposed-form-contenus-page-1') {
+  //   //  return FALSE;
+
+
+  //   // Query nodes
+  //   $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('user');
+  //   $nids = $storage->getQuery();
+ 
+   
+  //   // // Gather published artist nodes and sort by title
+  //   // $nids = $nids->condition('type', 'artist')
+  //   $nids = $nids->accessCheck(TRUE)
+  //   // ->condition('status', 1)
+  //    ->sort('field_nom')
+  //    ->condition('roles.target_id', ['membre'], 'IN')
+  //    ->execute();
+  //   //  kint($nids);
+  //   // // If there are no membres, move on
+  //   if (!$nids) {
+  //    return FALSE;
+  //   }
+ 
+  //   // // Start building out the options for our select list
+  //   $options = [];
+  //   $membres = $storage->loadMultiple($nids);
+ 
+  //   // // Push titles into select list
+  //   foreach ($membres as $membre) {
+  //    $options[$membre->id()] = $membre->field_nom->value.' '.$membre->field_prenom->value;
+  //   //  kint($membre->field_nom->value);
+  //   }
+  //   $options = [NULL => t('Sélectionnez un contributeur')] + $options; 
+  //   // // Start building out our new form element
+  //   // kint($form);
+  //   // $contributeur_field = 'Sélectionnez un contributeur';
+  //   $form['field_membres_contributeurs_target_id']['#type'] = 'select';
+  //   // $form['field_membres_contributeurs_target_id']['#multiple'] = TRUE;
+ 
+  //   // // Specify the empty option for our select list
+  //   $form['field_membres_contributeurs_target_id']['#empty_option'] = t('Sélectionnez un contributeur');
+ 
+  //   // // Add the $options from above to our select list
+  //   $form['field_membres_contributeurs_target_id']['#options'] = $options;
+  //   unset($form['field_membres_contributeurs_target_id']['#size']);
+    // kint($form);
+
+
+  //   // $artist_field = 'artist';
+  //   // $form[$artist_field]['#type'] = 'select';
+  //   // $form[$artist_field]['#multiple'] = FALSE;
+ 
+  //   // // // Specify the empty option for our select list
+  //   // $form[$artist_field]['#empty_option'] = t('Artist');
+ 
+  //   // // // Add the $options from above to our select list
+  //   // $form[$artist_field]['#options'] = $options;
+  //   // unset($form[$artist_field]['#size']);
+  //   }
+ 
+  // }
+
+//Entity reference disponible sous form filter numeric uniquement
+// https://www.drupal.org/project/drupal/issues/3347343
+
+// Solution simplifié puis config dans view
+// https://www.drupal.org/project/views_core_entity_reference
+
+  function atommod_views_data_alter(&$data) {
+    // Use entity reference for the field 'field_test_target'.
+ 
+    $field_name = 'field_membres_contributeurs';
+    $data['node__' . $field_name][$field_name . '_target_id']['filter']['id'] = 'entity_reference';
+    // // kint($data);
+  }
+
+  function atommod_views_pre_render(ViewExecutable $view) {
+    // Scramble the order of the rows shown on this result page.
+    // Note that this could be done earlier, but not later in the view execution
+    // process.
+    if ($view->id() == 'contenus' && $view->current_display =="page_1") {
+      // kint($view);
+      // kint($view->result[0]->_entity);
+      // kint($view->display_handler->handlers['field']['field_membres_contributeurs']);
+    }
+   
+    // shuffle($view->result);
+}
