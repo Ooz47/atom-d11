@@ -56,7 +56,8 @@ nav#block-atomeco-main-menu {
                 -webkit-transition: none;
                 transition: none;
             }
-            &.active-trail{
+            &.active-trail,
+            &.menu__item--active-trail{
                background: $bleufonce;
                 
                 outline: 0;
@@ -78,7 +79,7 @@ nav#block-atomeco-main-menu {
             ul {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 102%;
                 left: 0;
                 background: #fff;
                 padding: 0;
@@ -114,7 +115,8 @@ nav#block-atomeco-main-menu {
                     color: $blanc !important;
                     background: $bleufonce;
                 }
-                &.active-trail{
+                &.active-trail,
+                &.menu__item--active-trail{
                 a{color: $blanc!important;
                 &.active{
                      color: $blanc!important;

@@ -121,30 +121,111 @@ function atomeco_preprocess_views_view_field(&$variables) : void {
 
   $view = $variables['view'];
   $field = $variables['field'];
+  // Kint($field->field);
 
   // Vérifie si la vue est 'contenus', l'affichage actuel est 'page_1' et le champ est 'field_membres_contributeurs'
-if ($view->storage->id() == 'contenus' &&  $view->current_display == 'page_1' &&  $field->field == 'field_membres_contributeurs') {
-
+if (($view->storage->id() == 'contenus' || $view->storage->id() == 'taxonomy_term') &&  $view->current_display == 'page_1') {
+  if (isset($field->field) && $field->field == 'field_membres_contributeurs') {
   // Charge l'entité utilisateur associée au champ 'field_membres_contributeurs'
   $node = \Drupal::entityTypeManager()->getStorage('node')->load($variables['row']->nid);
 
- // Récupère l'ID de l'utilisateur associé au champ 'field_membres_contributeurs'
- $membreID = $node->get('field_membres_contributeurs')->getValue()[0]['target_id'];
+  // Kint($field->field);
+  if ($node->hasField('field_membres_contributeurs') && !$node->get('field_membres_contributeurs')->isEmpty()) {
+// Récupère les IDs des utilisateurs associés au champ 'field_membres_contributeurs'
+$membreIDs = $node->get('field_membres_contributeurs')->getValue();
 
-  // // Charge l'entité utilisateur associée au champ 'field_membres_contributeurs'
-  $membre = \Drupal::entityTypeManager()->getStorage('user')->load($membreID);
+$lien_membres = [];
 
-  // // Récupère le nom et le prénom de l'utilisateur
-  $nom_membre = $membre->get('field_nom')->getValue()[0]['value']." ".$membre->get('field_prenom')->getValue()[0]['value'];
-  
-  // // Génère l'URL du profil de l'utilisateur
+// Parcourt tous les IDs des membres contributeurs
+foreach ($membreIDs as $membreID) {
+  // Charge l'entité utilisateur associée à l'ID récupéré
+  $membre = \Drupal::entityTypeManager()->getStorage('user')->load($membreID['target_id']);
+
+  // Récupère le nom et le prénom de l'utilisateur
+  $nom_membre = $membre->get('field_nom')->getValue()[0]['value'] . " " . $membre->get('field_prenom')->getValue()[0]['value'];
+
+  // Génère l'URL du profil de l'utilisateur
   $url_membre = $membre->toUrl();
-  
-  // // Crée un lien HTML vers le profil de l'utilisateur en utilisant la classe Link
+
+  // Crée un lien HTML vers le profil de l'utilisateur en utilisant la classe Link
   $lien_membre = Link::fromTextAndUrl($nom_membre, $url_membre)->toString();
 
-  // // Définit la sortie du champ avec le lien HTML créé
-  $variables['output'] = \Drupal\Core\Render\Markup::create($lien_membre);
+  // Ajoute le lien à la liste des liens des membres
+  $lien_membres[] = $lien_membre;
+}
+
+// Définit la sortie du champ avec les liens HTML créés, séparés par des virgules
+$variables['output'] = \Drupal\Core\Render\Markup::create(implode(', ', $lien_membres));
+}
+}
 }
 }
 
+
+/* Pour activer le menu Qui sommes nous sur page membres */
+/**
+ * Implements hook_preprocess_HOOK() for menu links.
+ */
+function atomeco_preprocess_menu__main(&$variables) {
+ // URL de la page actuelle
+ $current_path = \Drupal::service('path.current')->getPath();
+ $current_path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+ $current_query = \Drupal::request()->getQueryString();
+
+ // URL spécifique pour laquelle vous souhaitez modifier 'in_active_trail'
+ $target_path_prefix = '/membres';
+ $menu_item_path = '/presentation';
+
+  // Vérifie si l'utilisateur est sur une page dont l'URL commence par '/membres'
+  if (strpos($current_path_alias, $target_path_prefix) === 0) {
+   // Parcourt chaque élément de menu
+   foreach ($variables['items'] as &$item) {
+     // Vérifie si l'URL de l'élément de menu correspond à l'URL du menu cible
+     if ($item['url']->toString() == $menu_item_path) {
+       // Modifie la valeur de 'in_active_trail'
+       $item['in_active_trail'] = TRUE;
+           // Vérifie et modifie l'élément enfant du menu
+           if (isset($item['below']) && is_array($item['below'])) {
+            foreach ($item['below'] as &$child_item) {
+              if ($child_item['url']->toString() == '/membres') {
+                $child_item['in_active_trail'] = TRUE;
+              }
+            }
+          }
+     }
+    //  Kint($item);
+   }
+ }
+ 
+ if (strpos($current_path_alias, '/actualites') === 0) {
+  
+  foreach ($variables['items'] as &$item) {
+  if ($item['url']->toString() == '/actualites') {
+
+       // Vérifie et modifie l'élément enfant du menu
+       if (isset($item['below']) && is_array($item['below'])) {
+        foreach ($item['below'] as &$child_item) {
+            // Réinitialise 'in_active_trail' pour tous les éléments enfants
+            $child_item['in_active_trail'] = FALSE;
+          if (isset($current_query) ) {
+          $child_item_url = $child_item['url']->toString();
+        
+          Kint($item);
+          // Vérifie l'URL complète, y compris les paramètres de requête
+          if ($child_item_url == '/actualites?field_categorie_actualite_target_id%5B0%5D=12' && strpos($current_query, 'field_categorie_actualite_target_id%5B0%5D=12') !== FALSE) {
+            $child_item['in_active_trail'] = TRUE;
+          }
+          elseif ($child_item_url == '/actualites?field_categorie_actualite_target_id%5B0%5D=11' && strpos($current_query, 'field_categorie_actualite_target_id%5B0%5D=11') !== FALSE) {
+            $child_item['in_active_trail'] = TRUE;
+          }
+          elseif ($child_item_url == '/actualites?field_categorie_actualite_target_id%5B0%5D=13' && strpos($current_query, 'field_categorie_actualite_target_id%5B0%5D=13') !== FALSE) {
+            $child_item['in_active_trail'] = TRUE;
+          }
+        }
+      }
+      }
+  }
+  }
+ }
+
+}

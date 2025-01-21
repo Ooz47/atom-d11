@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install and update hooks for menu trail by path.
+ */
+
+/**
+ * Ensure that container is rebuilt.
+ */
+function menu_trail_by_path_update_20000() {
+  // Existence of an update function is enough to force a rebuild.
+}

@@ -27,6 +27,7 @@
         "drupal/feeds": "^3.0@RC",
         "drupal/field_formatter_class": "^1.8",
         "drupal/image_effects": "^4.0",
+        "drupal/menu_trail_by_path": "^2.1",
         "drupal/pathauto": "^1.13",
         "drupal/simple_media_bulk_upload": "^2.0",
         "drupal/slick": "^3.0",

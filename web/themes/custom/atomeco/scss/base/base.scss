@@ -247,7 +247,15 @@ h3.block-title {
         }
     }
 }
+.type-actu {
+    & > div {
+        // font-family: "Droid Serif", georgia, serif;
+        &::before {
+            content: "";
 
+        }
+    }
+}
 .views-field-body {
  
     font-size: 13px;
