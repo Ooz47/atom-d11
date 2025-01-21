@@ -17,7 +17,6 @@
     color: $bleufonce;
     text-transform: uppercase;
     letter-spacing: 1px;
-    -webkit-text-stroke: 0px;
     font-weight: 600;
     position: relative;
     &::after {
@@ -37,20 +36,13 @@
     display: flex;
 
     .champ-image {
-      // float:left;
       max-width: 490px;
     }
 
     .col-droite {
-      background: rgb(255, 255, 255); /* Fall-back for browsers that don't
-          support rgba */
-      background: rgba(255, 255, 255, 0.9);
       background: $grisclair;
       min-height: 189px;
-      // padding: 5px 0 0;
       text-align: left;
-      //bottom: 0;
-      //position: absolute;
       max-width: 495px;
 
       .champ-titre {
@@ -59,9 +51,7 @@
         }
 
         margin: 0;
-        //  float: left;
         margin-left: 15px;
-        //width: 605px;
         line-height: 16px;
         margin-bottom: 0em;
         a {
@@ -71,21 +61,14 @@
       }
 
       .champ-texte {
-        // float: left;
         margin: 0px;
         color: $noirpolice;
-        //width: 600px;
-
-        margin: 0;
         margin: 0 5px 15px;
         margin-left: 15px;
       }
 
       .champ-chemin {
         text-align: right;
-        // float: right;
-        //  clear: both;
-        //  margin-top: -20px; /**/
 
         a {
           border: 2px solid $grisclair;
@@ -106,13 +89,9 @@
 
       .champ-thematiques {
        
-          // margin: 10px 26px 0;
-          // font-family: "Droid Serif", georgia, serif;
-          // font-style: italic;
           font-size: 12px;
           line-height: 12px;
           text-align: center;
-          // margin: 0 26px 0;
           clear: both;
           color: #888888;
           margin: 0;
@@ -130,14 +109,6 @@
         }
   
       }
-
-      // .views-field-title h3{
-      //    margin-top: 0em;
-      // }
-
-      // .views-field-title h3{
-      //    margin-top: 0em;
-      // }
     }
   }
 
@@ -145,7 +116,6 @@
     display: flex;
     justify-content: space-evenly;
     width: 25%;
-    /* align-items: center; */
     margin: auto;
     li {
       &::marker {

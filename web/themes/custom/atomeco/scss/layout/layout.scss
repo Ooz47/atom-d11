@@ -1,5 +1,4 @@
 @import "../utilities";
-@import "../base/base";
 
 #section1 {
     border-top: 22px solid $bleufonce;
@@ -24,7 +23,7 @@ main,
 }
 
 .section_2, .section_3 {
-    @extend .section;
+    // @extend .section!optional;
 }
 
 .text-center {

@@ -1,5 +1,4 @@
 @import "utilities";
-@import "base/base";
 
 @font-face {
   font-family: "NovecentowideLightBold";
@@ -47,9 +46,7 @@ main {
 }
 
 /*Bloc Notes Accueil*/
-.section_2 {
-  @extend .section !optional;
-}
+
 
 #block-atomeco-views-block-contenus-block-5,
 #block-atomeco-views-block-contenus-block-4,
@@ -172,7 +169,7 @@ main {
 
 /*Bloc actus accueil*/
 .section_3 {
-  @extend .section !optional;
+  // @extend .section !optional;
   background: $blanc!important;
   #block-atomeco-views-block-contenus-block-4 {
     .slick .slick-slide {
@@ -313,7 +310,7 @@ body.actualites {
   #views-exposed-form-contenus-page-1,
   #views-exposed-form-contenus-page-2 {
     background: $bleufonce;
-    padding: 5px;
+    padding: 10px;
 
     .form-item {
       float: none;
@@ -360,7 +357,7 @@ body.actualites {
       input[type="submit"] {
         color: $blanc;
         text-transform: uppercase;
-        font: 17px/40px "Open Sans", arial, sans-serif;
+        font: 17px/17px "Open Sans", arial, sans-serif;
         background: $bleucyan;
         margin-top: 15px;
         width: 121px;
