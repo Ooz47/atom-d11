@@ -4,78 +4,69 @@ $transition-timing-function: ease-in-out;
 
 nav#block-atomeco-main-menu {
     font-family: 'Source Sans Pro', sans-serif;
-    font-size:18px;
+    font-size: 18px;
     text-transform: uppercase;
-        margin: 15px 0 30px 0;
-        text-align: center;
-        width: 100%;
-        z-index: 5;
-        position: relative;
-        //background: url(../images/navigation-bg.png) 0px 1px;
+    margin: 15px 0 30px 0;
+    text-align: center;
+    width: 100%;
+    z-index: 5;
+    position: relative;
 
     ul {
         list-style: none;
         padding: 0;
         margin: 0;
 
-            li {
-                position: relative;
-                display: inline-block;
-                // padding: 5px 0;
-                // float:none;
-                margin: 0;
-                background: $grismenu;
-                margin-right: -5px;
-                    border-left: 2px solid #fff;
-                
-                a {
+        li {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            background: $grismenu;
+            margin-right: -5px;
+            border-left: 2px solid #fff;
+
+            a {
                 text-align: center;
                 text-decoration: none;
                 padding: 5px 55px;
                 color: $noirpolice;
                 display: block;
-                // padding: 10px;
-                // text-decoration: none;
-                // color: #000;
-                @include transition(background, 0.2s, ease-in); /**/
-                }
-                @include transition(background, 0.2s, ease-in);/**/
-                &:hover{
-                 background: $bleufonce;
-                     @include transition(background, 0.4s, ease-out);/**/
-                    
-            a{
-            color: $blanc;
-            }		
-                
+                @include transition(background, 0.2s, ease-in);
             }
+
+            &:hover {
+                background: $bleufonce;
+                @include transition(background, 0.4s, ease-out);
+
+                a {
+                    color: $blanc;
+                }
+            }
+
             a.is-active {
                 background: $bleufonce;
                 color: $blanc;
                 outline: 0;
-                -webkit-transition: none;
                 transition: none;
             }
+
             &.active-trail,
-            &.menu__item--active-trail{
-               background: $bleufonce;
-                
+            &.menu__item--active-trail {
+                background: $bleufonce;
                 outline: 0;
-                -webkit-transition: none;
                 transition: none;
-                
+
                 a {
-                color: $blanc;
+                    color: $blanc;
+                }
             }
-            }
-            // &.menu-530{
-            // display:none;
-            // }
+
             &:hover > ul {
                 display: block;
                 opacity: 1;
                 visibility: visible;
-              }
+            }
+
             ul {
                 display: none;
                 position: absolute;
@@ -88,53 +79,60 @@ nav#block-atomeco-main-menu {
                 opacity: 0;
                 visibility: hidden;
                 transition: opacity $transition-duration $transition-timing-function, visibility $transition-duration $transition-timing-function;
-             
-            li{
-                display: inline-block;
-                //text-transform: capitalize;
-                width: 100%;
-                margin: 0;
-                border: 0;
-                padding: 0;
-                font-size:0.9em;
-                   background: $grismenu;
-                   border-bottom: 1px #fff solid;
-                line-height: 1.7em;
-            
-                a{
-                color: $noirpolice!important;
-                padding: 0;
+
+                li {
+                    display: inline-block;
                     width: 100%;
+                    margin: 0;
+                    border: 0;
+                    padding: 0;
+                    font-size: 0.9em;
+                    background: $grismenu;
+                    border-bottom: 1px #fff solid;
+                    line-height: 1.7em;
+
+                    a {
+                        color: $noirpolice !important;
+                        padding: 0;
+                        width: 100%;
                         display: inline-block;
                         text-transform: initial;
-                    &:first-letter{
-             text-transform: uppercase;
-            }
-                }
-                a.is-active {
-                    color: $blanc !important;
-                    background: $bleufonce;
-                }
-                &.active-trail,
-                &.menu__item--active-trail{
-                a{color: $blanc!important;
-                &.active{
-                     color: $blanc!important;
+
+                        &:first-letter {
+                            text-transform: uppercase;
+                        }
+                    }
+
+                    a.is-active {
+                        color: $blanc !important;
+                        background: $bleufonce;
+                    }
+
+                    &.active-trail,
+                    &.menu__item--active-trail {
+                        a {
+                            color: $blanc !important;
+
+                            &.active {
+                                color: $blanc !important;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        background: $bleucyan;
+                        @include transition(background, 0.4s, ease-out);
+
+                        a {
+                            color: $blanc !important;
+                        }
                     }
                 }
-                }
-                &:hover{
-                 background: $bleucyan;
-                     @include transition(background, 0.4s, ease-out);/**/
-                a {
-                color: $blanc!important;
             }
-                }	
-            }
-            }
-            }
+        }
     }
-}    
+}
+
 // Styles pour le menu burger
 .menu-burger {
     display: none;
@@ -143,46 +141,36 @@ nav#block-atomeco-main-menu {
     background: #000;
     color: #fff;
     text-align: center;
-  
+
     &:hover {
-      background: #333;
+        background: #333;
     }
-  }
+}
 
+@media (max-width: 768px) {
+    nav#block-atomeco-main-menu ul {
+        display: none;
 
-  @media (max-width: 768px) {
-   nav#block-atomeco-main-menu ul {
-      display: none;
+        &.menu-open {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
 
-    &.menu-open {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        li {
-          display: block;
-          width: 100%;
-      
-          ul {
-            position: static;
-            display: block;
-            visibility: visible;
-            opacity: 1;
-  
-            // li {
-            //   background: #fff;
-            // }
-          }
+            li {
+                display: block;
+                width: 100%;
+
+                ul {
+                    position: static;
+                    display: block;
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
         }
     }
-  
 
-  
-  
-  
-  
-  }
-
-  .menu-burger {
-    display: block;
-  }
-  }
+    .menu-burger {
+        display: block;
+    }
+}

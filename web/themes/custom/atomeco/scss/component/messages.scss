@@ -1,22 +1,21 @@
 @import "../utilities";
+@import "../base/base";
 
-.messages, .messages--status, .messages--warning, .messages--error {
-    margin: 1.5em 0;
-    padding: 10px 10px 10px 50px;
+// Utilisation des classes définies dans base.scss
+.messages--status {
+    @extend .messages;
     background-color: #ecffef;
     border: 1px solid #b1d186;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1100px;
-    text-align: justify;
 }
 
 .messages--warning {
+    @extend .messages;
     background-color: #e7d51314;
     border: 1px solid #e7d513;
 }
+
 .messages--error {
+    @extend .messages;
     background-color: #bf38071a;
     border: 1px solid #bf3807;
 }

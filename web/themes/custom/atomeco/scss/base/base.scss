@@ -68,29 +68,27 @@ ul li {
     }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+// Styles communs pour les titres
+h1, h2, h3, h4, h5, h6 {
     color: $noirpolice;
     font-family: "NovecentowideLightBold", arial, serif;
-    font-weight: normal;
-    /*font-family: Novecentosanswide-Normal;*/
     font-weight: 500;
 }
+
 h1 {
     font-size: 1.7em;
     line-height: 1.5em;
 }
+
 h2 {
     font-size: 1em;
 }
+
 h3 {
     color: $bleufonce;
     line-height: 1.5;
 }
+
 h2.block-title,
 h3.block-title {
     font-size: 17px;
@@ -327,4 +325,54 @@ hr {
 
 header {
     text-align: center;
+}
+
+// Styles communs pour les boutons
+.button {
+    background-color: $bleucyan;
+    color: $blanc;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    @include transition(background-color, 0.3s, ease-out);
+
+    &:hover {
+        background-color: $bleufonce;
+    }
+}
+
+// Styles communs pour les sections
+.section {
+    background: $grisclair;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    padding-top: 1em;
+}
+
+// Styles communs pour les messages
+.messages {
+    margin: 1.5em 0;
+    padding: 10px 10px 10px 50px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1100px;
+    text-align: justify;
+    @include transition(background-color, 0.3s, ease-out);
+}
+
+.messages--status {
+    background-color: #ecffef;
+    border: 1px solid #b1d186;
+}
+
+.messages--warning {
+    background-color: #e7d51314;
+    border: 1px solid #e7d513;
+}
+
+.messages--error {
+    background-color: #bf38071a;
+    border: 1px solid #bf3807;
 }
