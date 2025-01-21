@@ -210,7 +210,7 @@ function atomeco_preprocess_menu__main(&$variables) {
           if (isset($current_query) ) {
           $child_item_url = $child_item['url']->toString();
         
-          Kint($item);
+          // Kint($item);
           // Vérifie l'URL complète, y compris les paramètres de requête
           if ($child_item_url == '/actualites?field_categorie_actualite_target_id%5B0%5D=12' && strpos($current_query, 'field_categorie_actualite_target_id%5B0%5D=12') !== FALSE) {
             $child_item['in_active_trail'] = TRUE;
