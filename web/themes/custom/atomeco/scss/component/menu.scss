@@ -139,7 +139,7 @@ nav#block-atomeco-main-menu {
     display: none;
     cursor: pointer;
     padding: 10px;
-    background: #000;
+    background: $bleufonce;
     color: #fff;
     text-align: center;
 
@@ -149,7 +149,11 @@ nav#block-atomeco-main-menu {
 }
 
 @media (max-width: 768px) {
-    nav#block-atomeco-main-menu ul {
+
+    nav#block-atomeco-main-menu{
+        margin-top: 0;
+        
+        ul {
         display: none;
 
         &.menu-open {
@@ -166,9 +170,16 @@ nav#block-atomeco-main-menu {
                     display: block;
                     visibility: visible;
                     opacity: 1;
+                    li {
+                        background: $blanc;
+                        &.menu__item--active-trail {
+                            background: #214593;
+                        }
+                    }
                 }
             }
         }
+    }
     }
 
     .menu-burger {

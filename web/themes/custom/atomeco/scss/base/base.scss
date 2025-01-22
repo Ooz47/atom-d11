@@ -319,12 +319,15 @@ header {
 }
 
 // Styles communs pour les sections
-#section2, .section_3 {
+.section_3 {
 
     padding-top: 1em;
 }
 #section2 {
     background: $grisclair;
+    // 
+}
+.section_2 {
     padding-top: 1em;
 }
 

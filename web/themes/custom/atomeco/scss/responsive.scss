@@ -1,0 +1,151 @@
+@import "utilities";
+
+// Variables pour les breakpoints
+$breakpoint-small: 480px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1024px;
+$breakpoint-xlarge: 1200px;
+
+// Styles par défaut (mobile first)
+
+// Exemple de styles par défaut
+// body {
+//   font-size: 16px;
+//   line-height: 1.5;
+// }
+
+// Styles pour les très grands écrans (jusqu'à 1200px)
+@media (max-width: $breakpoint-xlarge) {
+
+}
+
+// Styles pour les grands écrans (jusqu'à 1024px)
+@media (max-width: $breakpoint-large) {
+
+}
+
+// Styles pour les écrans moyens (768px à 1040px)
+@media (min-width: 768px) and (max-width: 1040px) {
+
+}
+
+// Styles pour les petits écrans (jusqu'à 480px)
+@media (max-width: $breakpoint-small) {
+
+    main, #entete, .intro, #section_3, .titre, #contenusassos, .region-bottom, #block-atomeco-views-block-contenus-block-5, #block-atomeco-views-block-contenus-block-4, #block-atomeco-views-block-contenus-block-2, #block-atomeco-views-block-contenus-block-3, #block-atomeco-formulaireexposecontenuspage-1-2 {
+        padding: 0px 20px;
+    }
+    h1 {
+        font-size: 1.2em;
+        line-height: 1.4em;
+        text-align: left;
+    
+    }
+
+    /*accueil*/
+    .intro {
+        width: auto;
+        .slideatomeco {
+            flex-direction: column;
+        }
+         h2 {
+            font-size: 18px;
+            margin: 0px 0 0;
+            line-height: 30px;
+            margin-bottom: 2rem;
+
+        }
+    .slick-dots {
+            width: 100%;
+        }
+    }
+
+    #block-atomeco-formulaireexposecontenuspage-1-2 {
+        #views-exposed-form-contenus-page-1 {
+            flex-direction: column;
+        }
+    }
+    footer nav ul {
+        display: inline-block;
+        padding: 0;
+        li {
+            display: inline-block;
+        }
+    }
+    nav#block-atomeco-main-menu {
+        font-size: 16px;
+    }
+
+    #block-atomeco-views-block-contenus-block-5 .slick .slick__arrow .slick-prev, 
+    #block-atomeco-views-block-contenus-block-4 .slick .slick__arrow .slick-prev, 
+    #block-atomeco-views-block-contenus-block-2 .slick .slick__arrow .slick-prev, 
+    #block-atomeco-views-block-contenus-block-3 .slick .slick__arrow .slick-prev {
+        right: 37px;
+    }
+    #block-atomeco-views-block-contenus-block-5 .slick .slick__arrow .slick-next,
+    #block-atomeco-views-block-contenus-block-4 .slick .slick__arrow .slick-next, 
+    #block-atomeco-views-block-contenus-block-2 .slick .slick__arrow .slick-next, 
+    #block-atomeco-views-block-contenus-block-3 .slick .slick__arrow .slick-next {
+
+        right: 4px;
+ 
+    }
+
+    /*Membres*/
+    body.membres .membres {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    body.page-user .fonction_titre {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+/*Notes et actus*/
+body.les-notes main, body.actualites main {
+
+    flex-direction: column-reverse;
+}
+.pages-notes, .page-actualites, .page-taxonomy {
+
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+
+}
+
+article iframe {
+    max-width: 100%;
+}
+
+
+    body.page-node-actualite , body.page-node-note, body.page-node-124 {
+        main article {
+            .field-fichier-pdf .media-fichier-pdf {
+              
+                word-break: break-all;
+            }
+            .blazy--field-image, .align-right {
+                float: none; 
+                margin:0;
+            }
+        }
+        }
+      
+
+    .blazy .media--blazy img.b-blur, .blazy .media--blazy img.media__element, .blazy .grid figure {
+        margin: auto;
+        width: 100%;
+    }
+
+
+    body:not(.page-node-note) main article .field-fichier-pdf {
+        max-width: 100%;
+
+        .media-fichier-pdf a {
+            flex-direction: column;
+        }
+    }
+
+}
