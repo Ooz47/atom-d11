@@ -276,3 +276,25 @@ body.page-node-121 {
         align-items: center;
     }
 }
+
+body.page-node-actualite , body.page-node-note{
+    main article {
+        .blazy--field-image {
+           
+            margin: 15px 0 0 15px;
+            max-width: 340px;
+        }
+    }
+}
+
+/*Page territoire*/
+
+body.page-node-124 {
+    main article {
+       .align-right {
+           
+            // margin: 15px 0 0 15px;
+            max-width: 220px;
+        }
+    }
+    }
