@@ -1,0 +1,232 @@
+.layout-container {
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #e2e2e2;
+  margin: 1rem 0;
+  font-size: 14px;
+}
+table thead {
+  background: #214593;
+  background-color: #f5f6f7;
+  background-image: -moz-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.04)
+  );
+  background-image: -ms-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.04)
+  );
+  background-image: -o-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.04)
+  );
+  background-image: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.04)
+  );
+  background-image: linear-gradient(
+    top,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.04)
+  );
+  background-repeat: repeat-x;
+}
+table thead th {
+  padding: 0.5em;
+  border-bottom: 2px solid #ccc;
+}
+table td {
+  padding: 2px 13px;
+}
+table a {
+  text-decoration: none;
+  color: #2f2f2f;
+}
+/* table tr:first-child {background: #FF0} */
+table tr:nth-child(2n + 2) {
+  background: #efefefad;
+}
+table a:hover {
+  color: #2489e8;
+  -webkit-transition: color 0.2s ease-out;
+  -moz-transition: color 0.2s ease-out;
+  -o-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+.taxonomy-overview-terms .tabledrag-toggle-weight-wrapper,
+.taxonomy-overview-vocabularies .tabledrag-toggle-weight-wrapper,
+.taxonomy-overview-terms #edit-reset-alphabetical,
+.taxonomy-overview-terms .dropbutton-toggle,
+.taxonomy-overview-vocabularies .dropbutton-toggle {
+  display: none !important;
+}
+
+#block-atomeco-primary-admin-actions {
+  margin: 2rem 0;
+}
+
+#block-atomeco-primary-admin-actions li::marker {
+  content: "";
+}
+#block-atomeco-primary-admin-actions li a {
+  text-decoration: none;
+}
+
+ #block-atomeco-content form a {
+  font-weight: 600;
+  color: #214593;
+}
+#block-atomeco-content .chosen-container a {
+  font-weight: 400;
+  color: initial;
+}
+
+#views-exposed-form-user-admin-people-page-1,
+#views-exposed-form-media-media-page-list,
+#views-exposed-form-content-page-1 {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+#views-exposed-form-user-admin-people-page-1 .form-item label,
+#views-exposed-form-media-media-page-list .form-item label,
+#views-exposed-form-content-page-1 .form-item label
+ {
+  margin-right: 1rem;
+}
+#views-exposed-form-user-admin-people-page-1 .form-item-user,
+/* #views-exposed-form-user-admin-people-page-1 .form-item-permission, */
+#views-form-user-admin-people-page-1 .form-wrapper {
+  display: none;
+}
+
+form.user-form .form-item {
+  /* display: block; */
+  margin: 1rem 0;
+}
+form.user-form .form-item > label,
+form.user-form .form-item legend {
+  font-weight: 600;
+  display: block;
+}
+form.user-form .form-item .description {
+  font-size: 0.8rem;
+}
+
+form.user-form .form-item input {
+  padding: 5px;
+}
+
+form.user-form .form-item.form-type-radio,
+form.user-form .form-item.form-type-checkbox {
+    margin: 0;
+}
+form.user-form .form-item.form-type-radio label,
+form.user-form .form-item.form-type-checkbox label {
+  font-weight: 400;
+  display: inline-block;
+}
+
+/* form.user-form #edit-contact, */
+/* form#views-form-content-page-1 #edit-header
+ {
+    display: none;
+} */
+
+
+.field--widget-text-textarea .form-wrapper,
+.js-text-format-wrapper .form-wrapper
+ {
+    display:none;
+}
+
+body.admincontentmedia #block-atomeco-secondary-local-tasks {
+    display: none;
+}
+
+
+/*Page d'edition*/
+.node-form .form-item {
+  margin: 1rem 0;
+}
+.node-form .form-item > label,
+.node-form .form-item  legend
+ {
+  margin-right: 1rem;
+  font-weight: 600;
+  display: block;
+}
+.node-form .form-item .description {
+  font-size: 0.8rem;
+}
+
+.node-form .form-item input {
+    padding: 5px;
+  }
+  
+  .node-form  .form-item.form-type-radio,
+  .node-form  .form-item.form-type-checkbox {
+      margin: 0;
+  }
+  .node-form  .form-item.form-type-radio label,
+  .node-form  .form-item.form-type-checkbox label {
+    font-weight: 400;
+    display: inline-block;
+  }
+
+  .button[value="Retirer"] {
+    background: #b93333;
+    float: right;
+  }
+
+  .button.button--danger {
+    background: #b93333;
+
+  }
+
+  #block-atomeco-content .button.button--danger{
+    color:#fff;
+    text-decoration: none;
+
+  }
+
+  #block-atomeco-content #edit-actions {
+    margin: 2rem 0;
+  }
+
+  body.page-node-unpublished .layout-content::before {
+      content: "Ce contenu n'est pas publié";
+      display: block;
+      background: #f5f6f7;
+      padding: 1rem;
+      border: 1px solid #e2e2e2;
+      margin: 1rem 0;
+    }   
+  
+/*Edition termes tax*/
+
+    
+form.taxonomy-term-form .form-item {
+  /* display: block; */
+  margin: 1rem 0;
+}
+form.taxonomy-term-form .form-item > label,
+form.taxonomy-term-form .form-item legend {
+  font-weight: 600;
+  display: block;
+}
+form.taxonomy-term-form .form-item .description {
+  font-size: 0.8rem;
+}
+form.taxonomy-term-form .form-item input {
+  padding: 5px;
+}
+

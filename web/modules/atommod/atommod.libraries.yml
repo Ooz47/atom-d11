@@ -2,3 +2,13 @@ extra.admin:
   css:
     theme:
       css/admin.css: {}
+extra.editor:
+  js:
+    js/editor.js: {}
+  css:
+    theme:
+      css/editor.css: {}
+  dependencies:
+  - core/drupal
+  - core/jquery
+  - core/once

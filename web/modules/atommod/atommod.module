@@ -1,7 +1,13 @@
 <?php
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\devel\Plugin\Devel\Dumper\Kint;
 use Drupal\views\ViewExecutable;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
  function atommod_page_attachments_alter(array &$attachments)
  {
@@ -22,83 +28,213 @@ use Drupal\views\ViewExecutable;
      $attachments['#attached']['library'][] = 'atommod/extra.admin';
    }
  
-   // /* charge library si role est webmaster reseau */
-//    $current_user = \Drupal::entityTypeManager()->getStorage('user')->load(\Drupal::currentUser()->id());
-//    if ($current_user->hasRole('webmaster_reseau')) {
+   /* charge library si role est webmaster a */
+   $current_user = \Drupal::entityTypeManager()->getStorage('user')->load(\Drupal::currentUser()->id());
+   if ($current_user->hasRole('content_editor')) {
  
-//      $attachments['#attached']['library'][] = 'reseau_mod/reseau_mod';
-//      // return;
-//    }
+     $attachments['#attached']['library'][] = 'atommod/extra.editor';
+     // return;
+   }
  }
  
- /**
-   * Implements hook_form_FORM_ID_alter().
-   *
-   * Alters the artist options on artwork pages.
-   */
-  // function atommod_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
- 
-  //   // If not the view we are looking, move on
-  //   if ($form['#id'] == 'views-exposed-form-contenus-page-1') {
-  //   //  return FALSE;
 
+/**
+ * Attache form id  à to les form elements.
+ *
+ * @param $form
+ *   The form or form element which children should have form id attached.
+ * @param $form_id
+ *   The form id attached to form elements.
+ *
+ * @return array
+ */
+function atommod_attach_form_id(&$form, $form_id)
+{
+  foreach (Element::children($form) as $child) {
+    if (!isset($form[$child]['#form_id'])) {
+      $form[$child]['#form_id'] = $form_id;
+    }
+    atommod_attach_form_id($form[$child], $form_id); // recurse for children
+  }
+}
 
-  //   // Query nodes
-  //   $storage = Drupal::getContainer()->get('entity_type.manager')->getStorage('user');
-  //   $nids = $storage->getQuery();
+//Modification des formulaire
+function atommod_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  atommod_attach_form_id($form, $form['#id']);
+  $current_user = \Drupal::entityTypeManager()->getStorage('user')->load(\Drupal::currentUser()->id());
  
+  if (($form_id === 'user_form') || ($form_id === 'user_register_form')) {
    
-  //   // // Gather published artist nodes and sort by title
-  //   // $nids = $nids->condition('type', 'artist')
-  //   $nids = $nids->accessCheck(TRUE)
-  //   // ->condition('status', 1)
-  //    ->sort('field_nom')
-  //    ->condition('roles.target_id', ['membre'], 'IN')
-  //    ->execute();
-  //   //  kint($nids);
-  //   // // If there are no membres, move on
-  //   if (!$nids) {
-  //    return FALSE;
-  //   }
- 
-  //   // // Start building out the options for our select list
-  //   $options = [];
-  //   $membres = $storage->loadMultiple($nids);
- 
-  //   // // Push titles into select list
-  //   foreach ($membres as $membre) {
-  //    $options[$membre->id()] = $membre->field_nom->value.' '.$membre->field_prenom->value;
-  //   //  kint($membre->field_nom->value);
-  //   }
-  //   $options = [NULL => t('Sélectionnez un contributeur')] + $options; 
-  //   // // Start building out our new form element
-  //   // kint($form);
-  //   // $contributeur_field = 'Sélectionnez un contributeur';
-  //   $form['field_membres_contributeurs_target_id']['#type'] = 'select';
-  //   // $form['field_membres_contributeurs_target_id']['#multiple'] = TRUE;
- 
-  //   // // Specify the empty option for our select list
-  //   $form['field_membres_contributeurs_target_id']['#empty_option'] = t('Sélectionnez un contributeur');
- 
-  //   // // Add the $options from above to our select list
-  //   $form['field_membres_contributeurs_target_id']['#options'] = $options;
-  //   unset($form['field_membres_contributeurs_target_id']['#size']);
-    // kint($form);
+    if (($current_user->hasRole('administrator')) || ($current_user->id() == '1')) {
+        //si admin retire l'ajout ou modification du rôle authenticated
+      // if (isset($form['account']['roles']['#options'])) {
+      //   unset($form['account']['roles']['#options']['authenticated']);
+      // }
+         //si role à éditer "authenticted" => user 1, retire status et roles
+        //  if ($form_id === 'user_form') {
+        //   if ((isset($form['account']['roles']['#default_value']))
+        //     && (($form['account']['roles']['#default_value'] == 'authenticated'))
+        //   ) {
+        //     $form['account']['roles']['#access'] = FALSE;
+        //     $form['account']['status']['#access'] = FALSE;
+        //   }
+        // }
+      return;
+    } else {
+      if (($current_user->hasRole('content_editor'))) {
+        if ($form_id === 'user_form') {
+        
+          $user = $form_state->getFormObject()->getEntity();
+          // Kint($user);
+          if ($user->hasRole('administrator')) {
+            throw new AccessDeniedHttpException();
+          }
+        }
+
+        if ($form_id === 'user_register_form') {
+          $form['account']['notify']['#access'] = FALSE;
+        }
+        if (isset($form['account']['roles']['#options'])) {
+          unset($form['account']['roles']['#options']['administrator']);
+          // unset($form['account']['roles']['#options']['authenticated']);
+        }
+
+        // $form['timezone']['#access'] = FALSE;
+        // $form['language']['#access'] = FALSE;
+        
+      } 
+      // else {
+      //   if (isset($form['account']['status'])) {
+      //     $form['account']['status']['#access'] = FALSE;
+      //   }
+      // }
+    }
+  }
+//  Kint($form_id);
+ /*Gestion accès form Add et edit */
+ $nodetype = array(
+  "node_actualite_form", "node_actualite_edit_form",
+  "node_note_form", "node_note_edit_form",
+  "node_page_form", "node_page_edit_form",
+  // "node_page_form", "taxonomy_term_categories_actualites_form",
+
+);
+// dsm($form);
+if (in_array($form_id, $nodetype)) {
+  $form['revision']['#access'] = FALSE;
+  $form['revision_log']['#access'] = FALSE;
+  // $form['simple_sitemap_index_now']['#access'] = FALSE;
+  $form['status']['#access'] = TRUE;
+}
+
+$nodetype = array(
+ "taxonomy_term_categories_actualites_form",
+ "taxonomy_term_thematiques_form",
+ "media_document_edit_form", "media_document_add_form",
+ "media_audio_edit_form", "media_audio_add_form",
+ "media_image_edit_form", "media_image_add_form",
+ "media_video_edit_form", "media_video_add_form",
+ "media_remote_video_edit_form", "media_remote_video_add_form",
+
+);
+// Kint($form);
+if (in_array($form_id, $nodetype)) {
+  $form['revision']['#access'] = FALSE;
+  $form['revision_log']['#access'] = FALSE;
+  $form['revision_information']['#access'] = FALSE;
+  $form['relations']['#access'] = FALSE;
+  // $form['simple_sitemap_index_now']['#access'] = FALSE;
+  // $form['status']['#access'] = TRUE;
+}
+} //FORM_ALTER
 
 
-  //   // $artist_field = 'artist';
-  //   // $form[$artist_field]['#type'] = 'select';
-  //   // $form[$artist_field]['#multiple'] = FALSE;
- 
-  //   // // // Specify the empty option for our select list
-  //   // $form[$artist_field]['#empty_option'] = t('Artist');
- 
-  //   // // // Add the $options from above to our select list
-  //   // $form[$artist_field]['#options'] = $options;
-  //   // unset($form[$artist_field]['#size']);
-  //   }
- 
+
+
+
+function atommod_menu_local_tasks_alter(&$data, $route_name, \Drupal\Core\Cache\RefinableCacheableDependencyInterface &$cacheability)
+{
+  // dsm($route_name);
+  // dsm($route_name);
+  $current_user = \Drupal::entityTypeManager()->getStorage('user')->load(\Drupal::currentUser()->id());
+
+  if (($current_user->hasRole('administrator')) || ($current_user->id() == '1')) {
+    //juste pour tester fonctionnement, à effacer/commenter en prod
+    // $current_user = \Drupal::entityTypeManager()->getStorage('user')->load(37);
+    return;
+  }
+
+
+  if ($current_user->hasRole('content_editor')) {
+    /*retire onglets droits et roles pour webmmster reseau*/
+    if ($route_name == 'entity.user.collection'  && isset($data['tabs'][0])) {
+      // Remove all tabs from user login form.
+      foreach ($data['tabs'][0] as $key => $tab) {
+        $data['tabs'][0][$key]['#access'] = FALSE;
+      }
+    }
+
+    // /*retire les onglets sur vue user*/
+    if (($route_name == 'entity.user.canonical')) {
+      foreach ($data['tabs'][0] as $key => $tab) {
+        $data['tabs'][0][$key]['#access'] = FALSE;
+      }
+    }
+
+    if (($route_name == 'user.admin_permissions') || ($route_name == 'entity.taxonomy_vocabulary.entity_permissions_form')
+     || ($route_name == 'entity.user_role.collection')) {
+      foreach ($data['tabs'][0] as $key => $tab) {
+        $data['tabs'][0][$key]['#access'] = FALSE;
+        throw new AccessDeniedHttpException();
+      }
+    }
+
+    // return;
+  }
+
+    /*retire lien login dans simple login*/
+    if (($route_name == 'user.login'  && isset($data['tabs'][0])) || ($route_name == 'user.pass'  && isset($data['tabs'][0]))) {
+      // Remove all tabs from user login form.
+      foreach ($data['tabs'][0] as $key => $tab) {
+        $data['tabs'][0][$key]['#access'] = FALSE;
+      }
+    }
+
+        /*retire lien login dans simple login*/
+        if ($route_name == 'entity.taxonomy_vocabulary.overview_form'  && isset($data['tabs'][0])) {
+          // Remove all tabs from user login form.
+          foreach ($data['tabs'][0] as $key => $tab) {
+            $data['tabs'][0][$key]['#access'] = FALSE;
+          }
+        }
+  }
+
+/*REtire bulk operations sur page admin user, content, media*/
+function atommod_views_pre_view(ViewExecutable $view, $display_id, array &$args)
+{
+//  Kint($view->id());
+//  Kint($view);
+  if ($view->id() == 'media' && $display_id == 'media_page_list') {
+    $view->removeHandler($view->current_display, 'field', 'media_bulk_form');
+  }
+
+  // if ($view->id() == 'media_library' && $display_id == 'page') {
+  //   $view->removeHandler($view->current_display, 'field', 'media_bulk_form');
   // }
+
+  // if ($view->id() == 'user_admin_people' && $display_id == 'page_1') {
+  //   // Kint($view);
+  //   $view->removeHandler($view->current_display, 'field', 'user_bulk_form');
+  // }
+
+  if ($view->id() == 'content' && $display_id == 'page_1') {
+    // Kint($view);
+    $view->removeHandler($view->current_display, 'field', 'node_bulk_form');
+  }
+
+}
+
 
 //Entity reference disponible sous form filter numeric uniquement
 // https://www.drupal.org/project/drupal/issues/3347343
@@ -125,4 +261,18 @@ use Drupal\views\ViewExecutable;
     }
    
     // shuffle($view->result);
+}
+
+
+/**
+ * Modifie les permissions pour permettre aux anonymes d'accéder aux comptes bloqués.
+ */
+function atommod_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  // Vérifiez si l'entité est un utilisateur et que l'opération est 'view'.
+  if ($entity->getEntityTypeId() === 'user' && $operation === 'view') {
+    // Permet l'accès aux utilisateurs anonymes même si le compte est bloqué.
+    return AccessResult::allowed();
+  }
+  // Utilisez les permissions par défaut pour tout autre cas.
+  return AccessResult::neutral();
 }

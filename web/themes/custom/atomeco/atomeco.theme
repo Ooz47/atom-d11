@@ -18,12 +18,19 @@ use Drupal\Core\Url;
 function atomeco_preprocess_html(array &$variables): void {
 
       // $view_mode = $variables;
-      // Kint($view_mode);
+      
       $node = \Drupal::routeMatch()->getParameter('node');
+      // Kint($node->status);
       if ($node instanceof NodeInterface) {
         $variables['attributes']['class'][] = 'page-node-' . $node->getType();
         $variables['attributes']['class'][] = 'page-node-' . $node->id();
     
+        if ($node->status->getString() == 1) {
+          // $variables['attributes']['class'][] = 'page-node-published';
+     } else {
+      $variables['attributes']['class'][] = 'page-node-unpublished';
+     }
+
         // if ($node->hasField('field_structure_associee') && !$node->get('field_structure_associee')->isEmpty()) {
         //   $terms = $node->get('field_structure_associee')->getValue();
         //   $variables['attributes']['class'][] = 'page-node-structure' . $terms[0]['target_id'];
