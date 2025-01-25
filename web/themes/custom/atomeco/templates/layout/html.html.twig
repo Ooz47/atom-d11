@@ -30,10 +30,9 @@
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
-            <link rel="preload" href="{{ url('<front>')|render ~ 'themes/custom/atomeco/fonts/webfonts/fa-regular-400.woff2' }}" as="font" type="font/woff2" crossorigin>
-        <link rel="preload" href="{{ url('<front>')|render ~ 'themes/custom/atomeco/fonts/webfonts/fa-solid-900.woff2' }}" as="font" type="font/woff2" crossorigin>
+            {# <link rel="preload" href="{{ url('<front>')|render ~ 'themes/custom/atomeco/fonts/webfonts/fa-regular-400.woff2' }}" as="font" type="font/woff2" crossorigin> #}
+        {# <link rel="preload" href="{{ url('<front>')|render ~ 'themes/custom/atomeco/fonts/webfonts/fa-solid-900.woff2' }}" as="font" type="font/woff2" crossorigin> #}
     
-      {# <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'> #}
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700' rel='stylesheet' type='text/css'>
   </head>
@@ -50,14 +49,5 @@
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token }}">
 
-       {#    //    <script type="text/javascript">
-        // tarteaucitron.user.gtagUa = 'G-JRNNH5NHYF';
-        // // tarteaucitron.user.gtagUa = 'XXXXXXXX';
-        // tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
-        // (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
-        // (tarteaucitron.job = tarteaucitron.job || []).push('partagereseaux');
-        // (tarteaucitron.job = tarteaucitron.job || []).push('remotevideo');
-        // </script>
-         #}
   </body>
 </html>

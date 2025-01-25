@@ -70,7 +70,12 @@ article {
 }
 
 // Styles communs pour les titres
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: $noirpolice;
     font-family: "NovecentowideLightBold", arial, serif;
     font-weight: 500;
@@ -116,7 +121,7 @@ h3.block-title {
 .field-thematiques,
 .field-date,
 .field-contributeurs,
-.field-categorie-actualite { 
+.field-categorie-actualite {
     font-size: 12px;
     display: inline;
     margin-right: 8px;
@@ -320,12 +325,11 @@ header {
 
 // Styles communs pour les sections
 .section_3 {
-
     padding-top: 1em;
 }
 #section2 {
     background: $grisclair;
-    // 
+    //
 }
 .section_2 {
     padding-top: 1em;
@@ -356,4 +360,74 @@ header {
 .messages--error {
     background-color: #bf38071a;
     border: 1px solid #bf3807;
+}
+
+/*EU cookies*/
+
+#sliding-popup {
+    height: auto;
+    width: 100%;
+    bottom: 0px;
+    background-color: $bleucyan;
+    color: $blanc;
+    font-family: "Open Sans", arial, serif;
+    .eu-cookie-withdraw-tab {
+        right: -105px;
+        width: 210px;
+        background-color: $bleufonce;
+        color: #fff;
+        left: auto;
+        padding: 5px 0;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border: 0 #ccc solid;
+    }
+    .popup-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        #popup-text {
+            h2 {
+                color: #fff;
+            }
+
+            .find-more-button {
+                display: inline-block;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0 0 10px;
+                border-width: 0;
+                border-radius: 5px;
+                padding: 10px 20px;
+                
+                // line-height: 29px;
+            }
+        }
+        #popup-buttons {
+            .eu-cookie-compliance-secondary-button,
+            .eu-cookie-compliance-default-button {
+                color: $blanc;
+                border: 0px solid $bleufonce;
+                margin: 0 5px;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer;
+                @include transition(background-color, 0.3s, ease-out);
+
+                &.agree-button {
+                    background-color: $bleufonce;
+                    &:hover {
+                        background-color: $bleucyan;
+                    }
+                }
+                &.decline-button {
+                    background-color: #831e28;
+                    &:hover {
+                        background-color: #99222e;
+                    }
+                }
+            }
+        }
+    }
 }

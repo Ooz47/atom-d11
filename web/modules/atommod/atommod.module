@@ -146,6 +146,10 @@ if (in_array($form_id, $nodetype)) {
   $form['relations']['#access'] = FALSE;
   // $form['simple_sitemap_index_now']['#access'] = FALSE;
   // $form['status']['#access'] = TRUE;
+
+  if (($form_id =="taxonomy_term_thematiques_form") || ($form_id =="taxonomy_term_categories_actualites_form")) {
+    $form['status']['#access'] = FALSE;
+  }
 }
 } //FORM_ALTER
 
@@ -214,19 +218,19 @@ function atommod_menu_local_tasks_alter(&$data, $route_name, \Drupal\Core\Cache\
 function atommod_views_pre_view(ViewExecutable $view, $display_id, array &$args)
 {
 //  Kint($view->id());
-//  Kint($view);
-  if ($view->id() == 'media' && $display_id == 'media_page_list') {
+//  Kint($display_id);
+  if ($view->id() == 'media' &&  $display_id == 'media_page_list') {
     $view->removeHandler($view->current_display, 'field', 'media_bulk_form');
   }
 
-  // if ($view->id() == 'media_library' && $display_id == 'page') {
-  //   $view->removeHandler($view->current_display, 'field', 'media_bulk_form');
-  // }
+  if ($view->id() == 'media_library' && $display_id == 'page') {
+    $view->removeHandler($view->current_display, 'field', 'media_bulk_form');
+  }
 
-  // if ($view->id() == 'user_admin_people' && $display_id == 'page_1') {
-  //   // Kint($view);
-  //   $view->removeHandler($view->current_display, 'field', 'user_bulk_form');
-  // }
+  if ($view->id() == 'user_admin_people' && $display_id == 'page_1') {
+    // Kint($view);
+    $view->removeHandler($view->current_display, 'field', 'user_bulk_form');
+  }
 
   if ($view->id() == 'content' && $display_id == 'page_1') {
     // Kint($view);
@@ -250,18 +254,7 @@ function atommod_views_pre_view(ViewExecutable $view, $display_id, array &$args)
     // // kint($data);
   }
 
-  function atommod_views_pre_render(ViewExecutable $view) {
-    // Scramble the order of the rows shown on this result page.
-    // Note that this could be done earlier, but not later in the view execution
-    // process.
-    if ($view->id() == 'contenus' && $view->current_display =="page_1") {
-      // kint($view);
-      // kint($view->result[0]->_entity);
-      // kint($view->display_handler->handlers['field']['field_membres_contributeurs']);
-    }
-   
-    // shuffle($view->result);
-}
+
 
 
 /**
@@ -275,4 +268,59 @@ function atommod_entity_access(EntityInterface $entity, $operation, AccountInter
   }
   // Utilisez les permissions par défaut pour tout autre cas.
   return AccessResult::neutral();
+}
+
+
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function atommod_views_pre_render(ViewExecutable $view) {
+  $add_classes = function (&$option, array $classes_to_add) {
+    $classes = preg_split('/\s+/', $option);
+    $classes = array_filter($classes);
+    $classes = array_merge($classes, $classes_to_add);
+    $option = implode(' ', array_unique($classes));
+  };
+
+  if ($view->id() === 'media_library') {
+    if ($view->display_handler->options['defaults']['css_class']) {
+      $add_classes($view->displayHandlers->get('default')->options['css_class'], ['media-library-view']);
+    }
+    else {
+      $add_classes($view->display_handler->options['css_class'], ['media-library-view']);
+    }
+
+    if ($view->current_display === 'page') {
+      if (array_key_exists('media_bulk_form', $view->field)) {
+        $add_classes($view->field['media_bulk_form']->options['element_class'], ['media-library-item__click-to-select-checkbox']);
+      }
+      if (array_key_exists('rendered_entity', $view->field)) {
+        $add_classes($view->field['rendered_entity']->options['element_class'], ['media-library-item__content']);
+      }
+      if (array_key_exists('edit_media', $view->field)) {
+        $add_classes($view->field['edit_media']->options['alter']['link_class'], ['media-library-item__edit']);
+        $add_classes($view->field['edit_media']->options['alter']['link_class'], ['icon-link']);
+      }
+      if (array_key_exists('delete_media', $view->field)) {
+        $add_classes($view->field['delete_media']->options['alter']['link_class'], ['media-library-item__remove']);
+        $add_classes($view->field['delete_media']->options['alter']['link_class'], ['icon-link']);
+      }
+    }
+    elseif (str_starts_with($view->current_display, 'widget')) {
+      if (array_key_exists('rendered_entity', $view->field)) {
+        $add_classes($view->field['rendered_entity']->options['element_class'], ['media-library-item__content']);
+      }
+      if (array_key_exists('media_library_select_form', $view->field)) {
+        $add_classes($view->field['media_library_select_form']->options['element_wrapper_class'], ['media-library-item__click-to-select-checkbox']);
+      }
+
+      if ($view->display_handler->options['defaults']['css_class']) {
+        $add_classes($view->displayHandlers->get('default')->options['css_class'], ['media-library-view--widget']);
+      }
+      else {
+        $add_classes($view->display_handler->options['css_class'], ['media-library-view--widget']);
+      }
+    }
+  }
 }

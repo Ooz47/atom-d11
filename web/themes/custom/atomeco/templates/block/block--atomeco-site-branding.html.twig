@@ -27,14 +27,10 @@
 			{% set replace_value_var = 'logo' %}
 			{% set replace_with_value_var = 'logo2' %}
 
-			{# {{ site_logo|replace({ (replace_value_var): replace_with_value_var }) }} #}
 		<a href="{{ path('<front>') }}" rel="home">
 				<img src="{{ site_logo|replace({ (replace_value_var): replace_with_value_var })  }}" alt="{{ 'Home'|t }}" fetchpriority="high"/>
 			</a>
 		{% endif %}
 	{% endif %}
-	{# {% if site_name %}
-		<a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
-	{% endif %} #}
-	{# {{ site_slogan }} #}
+
 {% endblock %}
