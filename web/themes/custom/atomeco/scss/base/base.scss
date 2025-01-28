@@ -336,7 +336,7 @@ header {
 }
 
 // Styles communs pour les messages
-.messages {
+.messages,div[role="alert"] {
     margin: 1.5em 0;
     padding: 10px 10px 10px 50px;
     border-radius: 10px;
@@ -357,7 +357,7 @@ header {
     border: 1px solid #e7d513;
 }
 
-.messages--error {
+.messages--error,div[role="alert"] {
     background-color: #bf38071a;
     border: 1px solid #bf3807;
 }
@@ -371,6 +371,7 @@ header {
     background-color: $bleucyan;
     color: $blanc;
     font-family: "Open Sans", arial, serif;
+    font-size: .9rem;
     .eu-cookie-withdraw-tab {
         right: -105px;
         width: 210px;
@@ -400,13 +401,20 @@ header {
                 border-width: 0;
                 border-radius: 5px;
                 padding: 10px 20px;
-                
+                @include transition(background-color, 0.3s, ease-out);
                 // line-height: 29px;
+                &:hover {
+                    background-color: $bleufonce;
+                 
+                        color: $blanc;
+                
+                }
             }
         }
         #popup-buttons {
             .eu-cookie-compliance-secondary-button,
-            .eu-cookie-compliance-default-button {
+            .eu-cookie-compliance-default-button, 
+            &.eu-cookie-compliance-buttons {
                 color: $blanc;
                 border: 0px solid $bleufonce;
                 margin: 0 5px;
@@ -418,7 +426,7 @@ header {
                 &.agree-button {
                     background-color: $bleufonce;
                     &:hover {
-                        background-color: $bleucyan;
+                        background-color: #103483;
                     }
                 }
                 &.decline-button {
@@ -427,7 +435,71 @@ header {
                         background-color: #99222e;
                     }
                 }
+                .eu-cookie-withdraw-button {
+                    display: inline-block;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    margin: 0 0 10px;
+                    border-width: 0;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                    // background-color: #831e28;
+                    cursor: pointer;
+                    @include transition(background-color, 0.3s, ease-out);
+                    &:hover {
+                        background-color: $bleufonce;
+                     
+                            color: $blanc;
+                    
+                    }
+                }
             }
         }
     }
 }
+
+.form-required {
+    margin-right: 10px;
+
+&::after {
+    display: inline-block;
+    line-height: 45px;
+    margin-left: 5px;
+    // margin-right: 5px;
+    // padding-top: 5px;
+    border-right: 1px #fff solid;
+    font: normal normal normal 8px / 1rem FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: "\f069";
+    // font-size: .5rem;
+    color: #c32222;
+    // margin-top: 9px;
+    position: absolute;
+}
+}
+
+
+#block-atomeco-content article .align-center .blazy--field-media-image--default {
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.file--application-pdf:not(.field-fichier-pdf *) {
+    a {
+      text-decoration: none;
+      color: #214593;
+      &::after{       margin: 0 10px;
+        padding-top: 5px;
+        font: normal normal normal 16px / 1rem FontAwesome;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        content: "\f019";}
+    }
+  }
+
+  .file--application-pdf:not(.field-fichier-pdf *) +span {
+display: none;
+  }

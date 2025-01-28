@@ -14,7 +14,7 @@ $(context).find(".toolbar-icon-entity-user-collection").each(function () {
   firstpan.css('display','none');
   var span2 = $(".toolbar-icon-entity-user-collection").first().siblings(".toolbar-menu").find("li:nth-child(3)");
   span2.css('display','none');
-  console.log(firstpan);
+  // console.log(firstpan);
 });
 
 
@@ -24,8 +24,20 @@ $(context).find(".toolbar-icon-system-admin-structure").each(function () {
     var toolbarMenuItems = $(this).first().siblings(".toolbar-menu").find("li ul li");
     toolbarMenuItems.find("ul").children().css('display', 'none');
     toolbarMenuItems.css('background-image', 'none');
-    console.log(toolbarMenuItems);
+    // console.log(toolbarMenuItems);
+
   });
+
+  $(context).find(".toolbar-icon-admin-toolbar-tools-help").each(function () {
+    // Suppression des droits taxonomie
+    var toolbarMenuItemsIndex = $(this).first().siblings(".toolbar-menu").find("li");
+    toolbarMenuItemsIndex.css('display', 'none');
+    toolbarMenuItemsIndex.css('background-image', 'none');
+    // console.log(toolbarMenuItemsIndex);
+
+    // var toolbarMenuItemsIndex = $(this).first().siblings(".toolbar-menu").find("li ul li");
+  });
+
 
 }
     }

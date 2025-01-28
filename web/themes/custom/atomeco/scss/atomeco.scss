@@ -119,6 +119,7 @@ main {
     }
   }
   .slick {
+    position: relative;
     .slick__arrow .slick-next,
     .slick__arrow .slick-prev {
       display: block;

@@ -21,14 +21,14 @@
 		{% if is_front %}
 
 			<a href="{{ path('<front>') }}" rel="home">
-				<img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high"/>
+				<img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" width="342" height="129"/>
 			</a>
 		{% else %}
 			{% set replace_value_var = 'logo' %}
 			{% set replace_with_value_var = 'logo2' %}
 
 		<a href="{{ path('<front>') }}" rel="home">
-				<img src="{{ site_logo|replace({ (replace_value_var): replace_with_value_var })  }}" alt="{{ 'Home'|t }}" fetchpriority="high"/>
+				<img src="{{ site_logo|replace({ (replace_value_var): replace_with_value_var })  }}" alt="{{ 'Home'|t }}" fetchpriority="high" width="342" height="129"/>
 			</a>
 		{% endif %}
 	{% endif %}
