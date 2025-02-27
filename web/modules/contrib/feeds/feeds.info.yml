@@ -6,7 +6,7 @@ core_version_requirement: ^10.1 || ^11
 configure: entity.feeds_feed_type.collection
 php: 8.0
 
-# Information added by Drupal.org packaging script on 2024-12-05
-version: '8.x-3.0-rc3'
+# Information added by Drupal.org packaging script on 2025-01-15
+version: '8.x-3.0'
 project: 'feeds'
-datestamp: 1733399688
+datestamp: 1736951430

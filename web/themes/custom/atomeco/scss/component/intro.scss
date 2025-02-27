@@ -40,6 +40,11 @@
 
     .champ-image {
       max-width: 490px;
+      img{
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
     }
 
     .col-droite {
