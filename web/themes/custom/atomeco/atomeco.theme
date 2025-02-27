@@ -128,10 +128,10 @@ function atomeco_preprocess_views_view_field(&$variables) : void {
 
   $view = $variables['view'];
   $field = $variables['field'];
-  // Kint($field->field);
+  // Kint($view);
 
   // Vérifie si la vue est 'contenus', l'affichage actuel est 'page_1' et le champ est 'field_membres_contributeurs'
-if (($view->storage->id() == 'contenus' || $view->storage->id() == 'taxonomy_term') &&  $view->current_display == 'page_1') {
+if (($view->storage->id() == 'contenus' || $view->storage->id() == 'taxonomy_term') &&  ($view->current_display == 'page_1' || $view->current_display == 'block_5')) {
   if (isset($field->field) && $field->field == 'field_membres_contributeurs') {
   // Charge l'entité utilisateur associée au champ 'field_membres_contributeurs'
   $node = \Drupal::entityTypeManager()->getStorage('node')->load($variables['row']->nid);

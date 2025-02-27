@@ -327,8 +327,15 @@ header {
 .section_3 {
     padding-top: 1em;
 }
-#section2 {
+// #section2 {
+//     background: $grisclair;
+//     min-height: 710px;
+//     //
+// }
+
+body.page-node-127 #section2 {
     background: $grisclair;
+    min-height: 710px;
     //
 }
 .section_2 {
@@ -417,7 +424,7 @@ header {
             &.eu-cookie-compliance-buttons {
                 color: $blanc;
                 border: 0px solid $bleufonce;
-                margin: 0 5px;
+                margin: 5px;
                 border-radius: 5px;
                 padding: 10px 20px;
                 cursor: pointer;

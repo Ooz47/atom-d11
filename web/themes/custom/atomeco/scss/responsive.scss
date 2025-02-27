@@ -53,6 +53,13 @@ $breakpoint-xlarge: 1200px;
 
 // Styles pour les grands écrans (à partir de 1024px)
 @media (max-width: $breakpoint-large) {
+
+    nav#block-atomeco-main-menu {
+        font-size: 15px;
+        ul li a {
+            padding: 5px 35px;
+        }
+    }
     /*accueil*/
     .intro {
         width: auto;
@@ -137,6 +144,7 @@ $breakpoint-xlarge: 1200px;
     /*accueil*/
     .intro {
         width: auto;
+        max-height: none;
         .slideatomeco {
             flex-direction: column;
             align-items: center;
